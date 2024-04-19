@@ -1,47 +1,54 @@
 "use client";
 
-type CarouselItem = {
-  backgroundImage: string;
-  featuedImage: string;
-  title: string;
-  id: string;
-  author: string;
-  when: string;
-  link: string;
-};
+import { useState } from "react";
+
+// Data
+import { featuredItems } from "@/data";
+
+// Components
+import Description from "../Description";
 
 const Carousel = (): React.ReactNode => {
-  const featuredItems: Array<CarouselItem> = [
-    {
-      backgroundImage: "",
-      featuedImage: "",
-      id: "johana-hobel-for-vouge",
-      title: "everyday flowers",
-      author: "Johanna Hobel for vouge",
-      when: "JUN 2019",
-      link: "#",
-    },
-  ];
+  const [activeItem, setActiveItem]: Array<Number | Function> = useState(0);
 
   return (
     <section>
-      {featuredItems.map(({ title, id }, index) => {
-        return (
-          <div key={`${index}-${id}`}>
-            <div>
-              background layer
+      {featuredItems.map(
+        ({ title, id, featuredImage, author, when, link }, index) => {
+          return (
+            <div key={`${index}-${id}`}>
               <div>
-                <div>prev preview</div>
+                background layer
                 <div>
-                  <h1>{title}</h1>
+                  <div>prev preview</div>
+                  <div>
+                    <div>{featuredImage}</div>
+                    <h1>{title}</h1>
+                  </div>
+                </div>
+                <div>next preview</div>
+              </div>
+              <div>
+                <p>
+                  {activeItem.toString()} of {featuredItems.length}
+                </p>
+                <div>
+                  {[1, 2, 3, 4, 5].map((_, index) => {
+                    return (
+                      <div onClick={() => setActiveItem(index)} key={index}>
+                        dots
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
-              <div>next preview</div>
+              <div>
+                <Description author={author} when={when} link={link} />
+              </div>
             </div>
-            <div></div>
-          </div>
-        );
-      })}
+          );
+        }
+      )}
     </section>
   );
 };
