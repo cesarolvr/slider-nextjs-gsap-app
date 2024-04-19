@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 
 // Fonts
-import { Inter } from "next/font/google";
+import { tungsten } from "@/fonts";
 
 // Styles
-import StyledComponentsRegistry from "@/components/StyledComponents";
-import GlobalStyle from "@/styles/globalStyles";
-
-const inter = Inter({ subsets: ["latin"] });
+import StyledComponentsRegistry from "@/app/components/StyledComponents";
+import GlobalStyle from "@/app/styles/globalStyles";
 
 export const metadata: Metadata = {
   title: "xyzphotography",
@@ -22,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GlobalStyle />
-      <body className={inter.className}>
+      <body className={`${tungsten.className}`}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
