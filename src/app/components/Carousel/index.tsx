@@ -8,11 +8,14 @@ import { featuredItems } from "@/data";
 // Components
 import Description from "../Description";
 
+// Styles
+import { CarouselStyled } from "./styles";
+
 const Carousel = (): React.ReactNode => {
   const [activeItem, setActiveItem]: Array<Number | Function> = useState(0);
 
   return (
-    <section>
+    <CarouselStyled>
       {featuredItems.map(
         ({ title, id, featuredImage, author, when, link }, index) => {
           return (
@@ -49,7 +52,7 @@ const Carousel = (): React.ReactNode => {
           })}
         </div>
       </div>
-    </section>
+    </CarouselStyled>
   );
 };
 
