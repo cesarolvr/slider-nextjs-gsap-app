@@ -9,7 +9,16 @@ import { featuredItems } from "@/data";
 import Description from "../Description";
 
 // Styles
-import { CarouselStyled } from "./styles";
+import {
+  CarouselStyled,
+  CarouselItem,
+  CarouselItemLayer,
+  CarouselItemContent,
+  NextThumbnail,
+  PrevThumbnail,
+  FeaturedItem,
+} from "./styles";
+import Image from "next/image";
 
 const Carousel = (): React.ReactNode => {
   const [activeItem, setActiveItem]: Array<Number | Function> = useState(0);
@@ -17,24 +26,40 @@ const Carousel = (): React.ReactNode => {
   return (
     <CarouselStyled>
       {featuredItems.map(
-        ({ title, id, featuredImage, author, when, link }, index) => {
+        (
+          { title, id, featuredImage, backgroundImage, author, when, link },
+          index
+        ) => {
+          const isFirstItem = index === 0;
+          const isLastItem = index === featuredItems.length - 1;
+
+          const previewOfPrev =
+            featuredItems[isFirstItem ? featuredItems.length - 1 : index - 1]
+              .featuredImage;
+
+          const previewOfNext =
+            featuredItems[isLastItem ? 0 : index + 1].featuredImage;
+
           return (
-            <div key={`${index}-${id}`}>
-              <div>
-                background layer
-                <div>
-                  <div>prev preview</div>
-                  <div>
-                    <div>{featuredImage}</div>
-                    <h1>{title}</h1>
-                  </div>
-                </div>
-                <div>next preview</div>
-              </div>
-              <div>
-                <Description author={author} when={when} link={link} />
-              </div>
-            </div>
+            <CarouselItem
+              key={`${index}-${id}`}
+              $backgroundImage={backgroundImage}
+            >
+              <CarouselItemLayer />
+              <CarouselItemContent>
+                <PrevThumbnail>
+                  <Image src={previewOfPrev} alt="" />
+                </PrevThumbnail>
+                <FeaturedItem>
+                  <h1>{title}</h1>
+                  <Image src={featuredImage} alt="" />
+                </FeaturedItem>
+                <NextThumbnail>
+                  <Image src={previewOfNext} alt="" />
+                </NextThumbnail>
+              </CarouselItemContent>
+              <Description author={author} when={when} link={link} />
+            </CarouselItem>
           );
         }
       )}
