@@ -9,24 +9,27 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+}
 
-  html,
-  body {
-    width: 100vw;
-    height: 100vh;
-    overflow-x: scroll;
-    overscroll-behavior-y: none;
-  }
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: scroll;
+  overscroll-behavior-y: none;
+}
 
-  body {
-    color: white;
-    background: black;
-  }
+body {
+  color: white;
+  background: black;
+}
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection { background: white; color: black }
 `;
 
 export default GlobalStyle;

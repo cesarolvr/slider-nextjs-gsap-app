@@ -1,5 +1,5 @@
 import { StaticImageData } from 'next/image';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 export const CarouselStyled = styled.section`
   height: 100vh;
@@ -42,13 +42,32 @@ export const CarouselItemContent = styled.div`
   height: 100%;
 `;
 
-export const NextThumbnail = styled.div`
-  display: none;
+const ThumbnailSharedStyles = css`
+  width: 248px;
+  height: 330px;
+  position: absolute;
+  cursor: pointer;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+`
+export const PrevThumbnail = styled.div`
+  ${ThumbnailSharedStyles};
+  left: 16px;
+  bottom: 16px;
+  /* display: none; */
 `;
 
-export const PrevThumbnail = styled.div`
-  display: none;
+export const NextThumbnail = styled.div`
+  ${ThumbnailSharedStyles};
+  right: 16px;
+  top: 16px;
+  /* display: none; */
 `;
+
 
 export const FeaturedItem = styled.div`
   
@@ -67,6 +86,7 @@ export const ImageWrapper = styled.div`
     height: 100%;
     position: relative;
     z-index: 3;
+    border-radius: 10px;
   }
 `;
 
@@ -111,4 +131,5 @@ export const TitleOutline = styled.span`
 	text-stroke: 1px white;
   text-shadow: none;
   text-wrap: nowrap;
+  user-select: none;
 `;
