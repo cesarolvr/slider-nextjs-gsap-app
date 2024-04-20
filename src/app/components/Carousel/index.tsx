@@ -29,26 +29,26 @@ const Carousel = (): React.ReactNode => {
                 <div>next preview</div>
               </div>
               <div>
-                <p>
-                  {activeItem.toString()} of {featuredItems.length}
-                </p>
-                <div>
-                  {[1, 2, 3, 4, 5].map((_, index) => {
-                    return (
-                      <div onClick={() => setActiveItem(index)} key={index}>
-                        dots
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <div>
                 <Description author={author} when={when} link={link} />
               </div>
             </div>
           );
         }
       )}
+      <div>
+        <p>
+          {activeItem.toString()} of {featuredItems.length}
+        </p>
+        <div>
+          {[1, 2, 3, 4, 5].map((_, index) => {
+            return (
+              <div onClick={() => setActiveItem(index)} key={index}>
+                dots
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 };

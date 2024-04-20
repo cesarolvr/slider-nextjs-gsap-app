@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     color: white;
+    background: black;
   }
 
   a {
