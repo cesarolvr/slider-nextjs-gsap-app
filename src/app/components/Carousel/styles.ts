@@ -1,5 +1,5 @@
 import { StaticImageData } from 'next/image';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const CarouselStyled = styled.section`
   height: 100vh;
@@ -11,7 +11,33 @@ export const CarouselStyled = styled.section`
 
 export const CarouselControl = styled.div`
   position: absolute;
-  inset: 0;
+  z-index: 6;
+  display: flex;
+  top: calc(100% - 24px);
+  align-items: center;
+  
+  p {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: light;
+  }
+
+  .dots {
+    display: flex;
+    margin-left: 10px;
+  }
+
+  .dot {
+    width: 5px;
+    height: 8px;
+    border: 1px solid white;
+    border-radius: 2px;
+    margin: 0 2px;
+
+    &.-active {
+      background-color: white;
+    }
+  }
 `;
 
 export const CarouselItem = styled.div<{ $backgroundImage?: StaticImageData }>`
@@ -58,25 +84,24 @@ export const PrevThumbnail = styled.div`
   ${ThumbnailSharedStyles};
   left: 16px;
   bottom: 16px;
-  /* display: none; */
 `;
 
 export const NextThumbnail = styled.div`
   ${ThumbnailSharedStyles};
   right: 16px;
   top: 16px;
-  /* display: none; */
 `;
 
 
 export const FeaturedItem = styled.div`
-  
+  position: relative;
 `;
 
 export const ImageWrapper = styled.div`
   width: 512px;
   height: 680px;
   display: flex;
+  flex-direction: column;
   position: relative;
   align-items: center;
   justify-content: center;
@@ -92,7 +117,7 @@ export const ImageWrapper = styled.div`
 
 export const Overlay = styled.div`
   width: 100%;
-  height: 100%;
+  height: 57%;
   overflow: hidden;
   position: absolute;
   display: flex;
@@ -102,7 +127,6 @@ export const Overlay = styled.div`
 `;
 
 export const Title = styled.h1`
-  position: absolute;
   display: block;
   font-size: 220px;
   font-weight: normal;

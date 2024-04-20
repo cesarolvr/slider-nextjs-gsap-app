@@ -1,5 +1,7 @@
 "use client";
 
+import classNames from "classnames";
+
 import { useState } from "react";
 
 // Data
@@ -7,6 +9,10 @@ import { featuredItems } from "@/data";
 
 // Components
 import Description from "../Description";
+import Image from "next/image";
+
+// Fonts
+import { helvetica } from "@/fonts";
 
 // Styles
 import {
@@ -23,10 +29,9 @@ import {
   Title,
   TitleOutline,
 } from "./styles";
-import Image from "next/image";
 
 const Carousel = (): React.ReactNode => {
-  const [activeItem, setActiveItem]: Array<Number | Function> = useState(0);
+  const [activeItem, setActiveItem]: Array<number | Function> = useState(0);
 
   return (
     <CarouselStyled>
@@ -59,6 +64,25 @@ const Carousel = (): React.ReactNode => {
                   <ImageWrapper>
                     <Overlay>
                       <Title>{title}</Title>
+                      <CarouselControl>
+                        <p className={helvetica.className}>
+                          {(activeItem + 1).toString()} of{" "}
+                          {featuredItems.length}
+                        </p>
+                        <div className="dots">
+                          {featuredItems.map((_, index) => {
+                            return (
+                              <div
+                                onClick={() => setActiveItem(index)}
+                                key={index}
+                                className={classNames("dot", {
+                                  "-active": activeItem === index,
+                                })}
+                              />
+                            );
+                          })}
+                        </div>
+                      </CarouselControl>
                     </Overlay>
                     <Image src={featuredImage} alt="" />
                     <TitleOutline>{title}</TitleOutline>
@@ -73,20 +97,6 @@ const Carousel = (): React.ReactNode => {
           );
         }
       )}
-      <CarouselControl>
-        <p>
-          {activeItem.toString()} of {featuredItems.length}
-        </p>
-        <div>
-          {[1, 2, 3, 4, 5].map((_, index) => {
-            return (
-              <div onClick={() => setActiveItem(index)} key={index}>
-                dots
-              </div>
-            );
-          })}
-        </div>
-      </CarouselControl>
     </CarouselStyled>
   );
 };
