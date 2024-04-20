@@ -14,9 +14,14 @@ import {
   CarouselItem,
   CarouselItemLayer,
   CarouselItemContent,
+  CarouselControl,
   NextThumbnail,
   PrevThumbnail,
   FeaturedItem,
+  ImageWrapper,
+  Overlay,
+  Title,
+  TitleOutline,
 } from "./styles";
 import Image from "next/image";
 
@@ -51,8 +56,13 @@ const Carousel = (): React.ReactNode => {
                   <Image src={previewOfPrev} alt="" />
                 </PrevThumbnail>
                 <FeaturedItem>
-                  <h1>{title}</h1>
-                  <Image src={featuredImage} alt="" />
+                  <ImageWrapper>
+                    <Overlay>
+                      <Title>{title}</Title>
+                    </Overlay>
+                    <Image src={featuredImage} alt="" />
+                    <TitleOutline>{title}</TitleOutline>
+                  </ImageWrapper>
                 </FeaturedItem>
                 <NextThumbnail>
                   <Image src={previewOfNext} alt="" />
@@ -63,7 +73,7 @@ const Carousel = (): React.ReactNode => {
           );
         }
       )}
-      <div>
+      <CarouselControl>
         <p>
           {activeItem.toString()} of {featuredItems.length}
         </p>
@@ -76,7 +86,7 @@ const Carousel = (): React.ReactNode => {
             );
           })}
         </div>
-      </div>
+      </CarouselControl>
     </CarouselStyled>
   );
 };
