@@ -32,8 +32,28 @@ import {
 const Carousel = (): React.ReactNode => {
   const [activeItem, setActiveItem]: Array<number | Function> = useState(0);
 
+  const goNext = (current: number): null => {
+    if (current === featuredItems.length - 1) {
+      setActiveItem(0);
+      return null;
+    }
+    setActiveItem(current + 1);
+
+    return null;
+  };
+
+  const goPrev = (current: number): null => {
+    if (current === 0) {
+      setActiveItem(featuredItems.length - 1);
+      return null;
+    }
+    setActiveItem(current - 1);
+
+    return null;
+  };
+
   return (
-    <CarouselStyled id="carousel-container">
+    <CarouselStyled>
       {featuredItems.map(
         (
           { title, id, featuredImage, backgroundImage, author, when, link },
@@ -52,12 +72,14 @@ const Carousel = (): React.ReactNode => {
           return (
             <CarouselItem
               key={`${index}-${id}`}
-              id="carousel-item"
               $backgroundImage={backgroundImage}
+              className={classNames({
+                "-active": index === activeItem,
+              })}
             >
               <CarouselItemLayer />
               <CarouselItemContent>
-                <PrevThumbnail>
+                <PrevThumbnail onClick={() => goPrev(index)}>
                   <Image src={previewOfPrev} alt="" />
                 </PrevThumbnail>
                 <FeaturedItem>
@@ -88,7 +110,7 @@ const Carousel = (): React.ReactNode => {
                     <TitleOutline>{title}</TitleOutline>
                   </ImageWrapper>
                 </FeaturedItem>
-                <NextThumbnail>
+                <NextThumbnail onClick={() => goNext(index)}>
                   <Image src={previewOfNext} alt="" />
                 </NextThumbnail>
               </CarouselItemContent>

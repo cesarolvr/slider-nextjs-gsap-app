@@ -4,7 +4,7 @@ export const HeaderStyled = styled.header`
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 6;
+  z-index: 10;
   font-size: 16px;
   font-weight: 400;
   text-transform: uppercase;

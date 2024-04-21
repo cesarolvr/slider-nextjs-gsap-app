@@ -49,7 +49,16 @@ export const CarouselItem = styled.div<{ $backgroundImage?: StaticImageData }>`
   background-size: 150%;
   background-position: center center;
   background-repeat: no-repeat;
-  position: relative;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  &.-active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 8;
+  }
 `;
 
 export const CarouselItemLayer = styled.div`
