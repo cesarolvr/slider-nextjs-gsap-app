@@ -1,4 +1,5 @@
-import { StaticImageData } from 'next/image';
+import { motion } from 'framer-motion';
+import Image, { StaticImageData } from 'next/image';
 import styled, { css } from 'styled-components';
 
 export const CarouselStyled = styled.section`
@@ -9,7 +10,7 @@ export const CarouselStyled = styled.section`
   position: relative;
 `;
 
-export const CarouselControl = styled.div`
+export const CarouselControl = styled(motion.div)`
   position: absolute;
   z-index: 6;
   display: flex;
@@ -25,6 +26,11 @@ export const CarouselControl = styled.div`
   .dots {
     display: flex;
     margin-left: 10px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .dot {
@@ -33,9 +39,15 @@ export const CarouselControl = styled.div`
     border: 1px solid white;
     border-radius: 2px;
     margin: 0 2px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 
     &.-active {
       background-color: white;
+    }
+
+    &:hover {
+      transform: scale(1.6);
     }
   }
 `;
@@ -82,20 +94,38 @@ const ThumbnailSharedStyles = css`
   height: 330px;
   position: absolute;
   cursor: pointer;
-
-  > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-  }
 `
-export const PrevThumbnail = styled.div`
+export const PrevThumbnail = styled(motion.div)`
   ${ThumbnailSharedStyles};
   left: 16px;
   bottom: 16px;
 `;
 
-export const NextThumbnail = styled.div`
+export const PrevImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  transform-origin: bottom left;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const NextImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  transform-origin: top right;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const NextThumbnail = styled(motion.div)`
   ${ThumbnailSharedStyles};
   right: 16px;
   top: 16px;
@@ -106,6 +136,17 @@ export const FeaturedItem = styled.div`
   position: relative;
 `;
 
+export const FeaturedImageWrapper = styled(motion.div)`
+    width: 100%;
+    height: 100%;
+    position: relative;
+`;
+
+export const FeaturedImage = styled(Image)`
+    z-index: 3;
+    border-radius: 10px;
+`;
+
 export const ImageWrapper = styled.div`
   width: 512px;
   height: 680px;
@@ -114,14 +155,6 @@ export const ImageWrapper = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
-
-  > img {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 3;
-    border-radius: 10px;
-  }
 `;
 
 export const Overlay = styled.div`
@@ -148,6 +181,11 @@ export const Title = styled.h1`
 	text-stroke: 1px white;
   text-wrap: nowrap;
 `;
+
+
+export const TitleOverlay = styled.div`
+  overflow: hidden;
+`
 
 export const TitleOutline = styled.span`
   position: absolute;

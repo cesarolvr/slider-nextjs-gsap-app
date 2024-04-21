@@ -15,7 +15,7 @@ import bgImage5 from "@/images/image05@2x.jpg";
 type CarouselItem = {
   backgroundImage: StaticImageData;
   featuredImage: StaticImageData;
-  title: React.ReactNode;
+  title: Array<string>;
   id: string;
   author: string;
   when: string;
@@ -27,11 +27,7 @@ export const featuredItems: Array<CarouselItem> = [
     backgroundImage: bgImage1,
     featuredImage: ftImage1,
     id: "johana-hobel-for-vouge",
-    title: (
-      <>
-        everyday <br /> flowers
-      </>
-    ),
+    title: ["everyday", "flowers"],
     author: "Johanna Hobel for vouge",
     when: "JUN 2019",
     link: "#",
@@ -40,11 +36,7 @@ export const featuredItems: Array<CarouselItem> = [
     backgroundImage: bgImage2,
     featuredImage: ftImage2,
     id: "johana-hobel-for-wild",
-    title: (
-      <>
-        the wilder <br /> night
-      </>
-    ),
+    title: ["the wilder", "night"],
     author: "Johanna Hobel for WILD",
     when: "DEC 2019",
     link: "#",
@@ -53,11 +45,7 @@ export const featuredItems: Array<CarouselItem> = [
     backgroundImage: bgImage3,
     featuredImage: ftImage3,
     id: "johana-hobel-for-channel",
-    title: (
-      <>
-        smooth <br /> memories
-      </>
-    ),
+    title: ["smooth", "memories"],
     author: "Johanna Hobel for Chanel",
     when: "FEB 2020",
     link: "#",
@@ -66,11 +54,7 @@ export const featuredItems: Array<CarouselItem> = [
     backgroundImage: bgImage4,
     featuredImage: ftImage4,
     id: "johana-hobel-for-on",
-    title: (
-      <>
-        the future <br /> universe
-      </>
-    ),
+    title: ["the future", "universe"],
     author: "Johanna Hobel for on",
     when: "APR 2020",
     link: "#",
@@ -79,11 +63,7 @@ export const featuredItems: Array<CarouselItem> = [
     backgroundImage: bgImage5,
     featuredImage: ftImage5,
     id: "johana-hobel-for-si",
-    title: (
-      <>
-        she was <br /> born urban
-      </>
-    ),
+    title: ["she was", "born urban"],
     author: "Johanna Hobel for si",
     when: "DEC 2021",
     link: "#",

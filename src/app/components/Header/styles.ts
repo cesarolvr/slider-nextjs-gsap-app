@@ -11,3 +11,11 @@ export const HeaderStyled = styled.header`
   letter-spacing: 1.3px;
   padding: 20px;
 `;
+
+export const LogoWrapper = styled.div`
+  overflow: hidden;
+
+  a {
+    display: inline-block;
+  }
+`;

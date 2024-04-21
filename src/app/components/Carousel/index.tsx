@@ -1,7 +1,8 @@
 "use client";
 
 import classNames from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 // Data
 import { featuredItems } from "@/data";
@@ -22,15 +23,28 @@ import {
   CarouselControl,
   NextThumbnail,
   PrevThumbnail,
+  PrevImage,
+  NextImage,
   FeaturedItem,
   ImageWrapper,
   Overlay,
   Title,
   TitleOutline,
+  TitleOverlay,
+  FeaturedImage,
+  FeaturedImageWrapper,
 } from "./styles";
 
 const Carousel = (): React.ReactNode => {
-  const [activeItem, setActiveItem]: Array<number | Function> = useState(0);
+  const savedActiveItem = localStorage.getItem("activeItem");
+
+  const [activeItem, setActiveItem]: Array<number | Function> = useState(
+    savedActiveItem !== null ? parseInt(savedActiveItem) : 0
+  );
+
+  useEffect(() => {
+    localStorage.setItem("activeItem", activeItem.toString());
+  }, [activeItem]);
 
   const goNext = (current: number): null => {
     if (current === featuredItems.length - 1) {
@@ -79,14 +93,62 @@ const Carousel = (): React.ReactNode => {
             >
               <CarouselItemLayer />
               <CarouselItemContent>
-                <PrevThumbnail onClick={() => goPrev(index)}>
-                  <Image src={previewOfPrev} alt="" />
+                <PrevThumbnail
+                  onClick={() => goPrev(index)}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    delay: 0.3,
+                    stiffness: 400,
+                    damping: 40,
+                  }}
+                >
+                  <PrevImage src={previewOfPrev} alt="" />
                 </PrevThumbnail>
                 <FeaturedItem>
                   <ImageWrapper>
                     <Overlay>
-                      <Title>{title}</Title>
-                      <CarouselControl>
+                      <Title>
+                        <TitleOverlay>
+                          <motion.div
+                            initial={{ x: 200, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{
+                              ease: "easeInOut",
+                              duration: 0.7,
+                              stiffness: 400,
+                              damping: 40,
+                              delay: 0.7,
+                            }}
+                          >
+                            {title[0]}
+                          </motion.div>
+                        </TitleOverlay>
+                        <TitleOverlay>
+                          <motion.div
+                            initial={{ x: -200, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{
+                              ease: "easeInOut",
+                              duration: 0.7,
+                              stiffness: 400,
+                              damping: 40,
+                              delay: 0.7,
+                            }}
+                          >
+                            {title[1]}
+                          </motion.div>
+                        </TitleOverlay>
+                      </Title>
+                      <CarouselControl
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: 1.1,
+                          stiffness: 400,
+                          damping: 40,
+                        }}
+                      >
                         <p className={helvetica.className}>
                           {(activeItem + 1).toString()} of{" "}
                           {featuredItems.length}
@@ -106,12 +168,63 @@ const Carousel = (): React.ReactNode => {
                         </div>
                       </CarouselControl>
                     </Overlay>
-                    <Image src={featuredImage} alt="" />
-                    <TitleOutline>{title}</TitleOutline>
+                    <FeaturedImageWrapper
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.3,
+                        stiffness: 400,
+                        damping: 40,
+                      }}
+                    >
+                      <FeaturedImage src={featuredImage} alt="" />
+                    </FeaturedImageWrapper>
+                    <TitleOutline>
+                      <div>
+                        <motion.div
+                          initial={{ x: 200, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          transition={{
+                            ease: "easeInOut",
+                            duration: 0.7,
+                            stiffness: 400,
+                            damping: 40,
+                            delay: 0.7,
+                          }}
+                        >
+                          {title[0]}
+                        </motion.div>
+                      </div>
+                      <div>
+                        <motion.div
+                          initial={{ x: -200, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          transition={{
+                            ease: "easeInOut",
+                            duration: 0.7,
+                            stiffness: 400,
+                            damping: 40,
+                            delay: 0.7,
+                          }}
+                        >
+                          {title[1]}
+                        </motion.div>
+                      </div>
+                    </TitleOutline>
                   </ImageWrapper>
                 </FeaturedItem>
-                <NextThumbnail onClick={() => goNext(index)}>
-                  <Image src={previewOfNext} alt="" />
+                <NextThumbnail
+                  onClick={() => goNext(index)}
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    delay: 0.4,
+                    stiffness: 400,
+                    damping: 40,
+                  }}
+                >
+                  <NextImage src={previewOfNext} alt="" />
                 </NextThumbnail>
               </CarouselItemContent>
               <Description author={author} when={when} link={link} />

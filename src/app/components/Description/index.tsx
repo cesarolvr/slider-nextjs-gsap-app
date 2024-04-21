@@ -19,9 +19,40 @@ const Description = ({
 }: DescriptionParams): React.ReactNode => {
   return (
     <DescriptionStyled className={helvetica.className}>
-      <Author>{author}</Author>
-      <Time>{when}</Time>
-      <Button href={link}>have a look</Button>
+      <Author
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.5,
+          stiffness: 400,
+          damping: 40,
+        }}
+      >
+        {author}
+      </Author>
+      <Time
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.6,
+          stiffness: 400,
+          damping: 40,
+        }}
+      >
+        {when}
+      </Time>
+      <Button
+        href={link}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.7,
+          stiffness: 400,
+          damping: 40,
+        }}
+      >
+        have a look
+      </Button>
     </DescriptionStyled>
   );
 };

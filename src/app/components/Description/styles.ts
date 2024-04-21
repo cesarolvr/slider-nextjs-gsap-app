@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const DescriptionStyled = styled.section`
+export const DescriptionStyled = styled(motion.section)`
   position: absolute;
   bottom: 100px;
   right: 100px;
@@ -12,18 +13,18 @@ export const DescriptionStyled = styled.section`
   font-size: 10px;
 `;
 
-export const Author = styled.h2`
+export const Author = styled(motion.h2)`
   text-align: left;
   font-size: 10px;
   margin-top: 0;
 `;
 
-export const Time = styled.time`
+export const Time = styled(motion.time)`
   margin-bottom: 15px;
   text-align: right;
 `;
 
-export const Button = styled.a`
+export const Button = styled(motion.a)`
   background-color: white;
   padding: 12px;
   color: black;
