@@ -4,7 +4,6 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 import {
   motion,
-  useAnimation,
   useMotionValue,
   useTransform,
 } from "framer-motion";
