@@ -2,7 +2,12 @@
 
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 
 // Data
 import { featuredItems } from "@/data";
@@ -66,8 +71,21 @@ const Carousel = (): React.ReactNode => {
     return null;
   };
 
+  const x = useMotionValue(200);
+  const y = useMotionValue(200);
+
+  const rotateX = useTransform(y, [0, 0], [5, -5]);
+  const rotateY = useTransform(x, [0, 2000], [-15, 15]);
+
+  const handleMouse = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+
+    x.set(event.clientX - rect.left);
+    y.set(event.clientY - rect.top);
+  };
+
   return (
-    <CarouselStyled>
+    <CarouselStyled onMouseMove={handleMouse}>
       {featuredItems.map(
         (
           { title, id, featuredImage, backgroundImage, author, when, link },
@@ -105,7 +123,7 @@ const Carousel = (): React.ReactNode => {
                 >
                   <PrevImage src={previewOfPrev} alt="" />
                 </PrevThumbnail>
-                <FeaturedItem>
+                <FeaturedItem style={{ rotateX, rotateY }}>
                   <ImageWrapper>
                     <Overlay>
                       <Title>

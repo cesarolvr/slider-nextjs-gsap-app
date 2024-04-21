@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 import styled, { css } from 'styled-components';
 
-export const CarouselStyled = styled.section`
+export const CarouselStyled = styled(motion.div)`
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -99,6 +99,10 @@ export const PrevThumbnail = styled(motion.div)`
   ${ThumbnailSharedStyles};
   left: 16px;
   bottom: 16px;
+
+  img {
+    pointer-events: none;
+  }
 `;
 
 export const PrevImage = styled(Image)`
@@ -132,7 +136,7 @@ export const NextThumbnail = styled(motion.div)`
 `;
 
 
-export const FeaturedItem = styled.div`
+export const FeaturedItem = styled(motion.div)`
   position: relative;
 `;
 
