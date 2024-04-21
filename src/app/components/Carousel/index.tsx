@@ -1,7 +1,6 @@
 "use client";
 
 import classNames from "classnames";
-
 import { useState } from "react";
 
 // Data
@@ -34,7 +33,7 @@ const Carousel = (): React.ReactNode => {
   const [activeItem, setActiveItem]: Array<number | Function> = useState(0);
 
   return (
-    <CarouselStyled>
+    <CarouselStyled id="carousel-container">
       {featuredItems.map(
         (
           { title, id, featuredImage, backgroundImage, author, when, link },
@@ -53,6 +52,7 @@ const Carousel = (): React.ReactNode => {
           return (
             <CarouselItem
               key={`${index}-${id}`}
+              id="carousel-item"
               $backgroundImage={backgroundImage}
             >
               <CarouselItemLayer />
