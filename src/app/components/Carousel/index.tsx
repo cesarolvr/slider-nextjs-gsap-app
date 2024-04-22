@@ -48,12 +48,15 @@ const Carousel = (): React.ReactNode => {
   const [activeItem, setActiveItem]: Array<number | Function> = useState(
     savedActiveItem !== null ? parseInt(savedActiveItem) : 0
   );
+  // const [timeline, setTimeline]: Array<GSAPTimeline | Function | null> =
+  //   useState(null);
 
   useEffect(() => {
     window.localStorage.setItem("activeItem", activeItem.toString());
   }, [activeItem]);
 
   const goNext = (current: number): null => {
+    // console.log(timeline)
     if (current === featuredItems.length - 1) {
       setActiveItem(0);
       return null;
@@ -91,58 +94,47 @@ const Carousel = (): React.ReactNode => {
   const InitCarousel = () => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let sections = gsap.utils.toArray(".carouselItem");
+    const track = document.querySelector(".track");
+    const container = document.querySelector(".carouselContainer");
+    const trackWidth = track.scrollWidth;
+    const innerWidth = window.innerWidth;
 
-    gsap.to(sections, {
-      xPercent: -100 * (sections.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".carouselContainer",
-        pin: true,
-        scrub: 1,
-        snap: { snapTo: 1 / (sections.length - 1), duration: 0.05 },
-        end: "+=3500",
-      },
-    });
+    const timeline = gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".track",
+          pin: true,
+          pinSpacing: false,
+          start: "top top",
+          end: () => {
+            console.log({ a: trackWidth - innerWidth });
+            return "+=" + (trackWidth - innerWidth);
+          },
+          scrub: true,
+          markers: true,
+        },
+      })
+      .addLabel("first")
+      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 1}px` })
+      .to(".carouselItem", { scale: 1, borderRadius: "0px" })
+      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .addLabel("second")
+      .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 2}px` })
+      .to(".carouselItem", { scale: 1, borderRadius: "0px" })
+      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .addLabel("third")
+      .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 3}px` })
+      .to(".carouselItem", { scale: 1, borderRadius: "0px" })
+      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .addLabel("forth")
+      .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 4}px` })
+      .to(".carouselItem", { scale: 1, borderRadius: "0px" })
+      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .addLabel("fifth")
+      .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 5}px` });
 
-    // // define movement of panels
-    // const tl = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: ".carouselContainer",
-    //     pin: true,
-    //     start: "50% top",
-    //     end: "bottom 50%",
-    //     // scrub: 1,
-    //     // snap: {
-    //     //   snapTo: "transition", // snap to the closest label in the timeline
-    //     //   duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-    //     //   delay: 1, // wait 0.2 seconds from the last scroll event before doing the snapping
-    //     //   ease: "power1.inOut", // the ease of the snap animation ("power3" by default)
-    //     // },
-    //     markers: true,
-    //   },
-    // });
-
-    // // animate to second panel
-    // // tl.to("#track", { duration: 1, z: -150 }); // move back in 3D space
-    // tl.to("#track", { x: "-20%" }); // move in to first panel
-    // // tl.to("#track", { duration: 1, z: 0 }); // move back to origin in 3D space
-    // tl.addLabel("transition");
-    // // animate to third panel
-    // // tl.to("#track", { duration: 1, z: -150, delay: 1 });
-    // tl.to("#track", { x: "-40%" });
-    // // tl.to("#track", { duration: 1, z: 0 });
-    // tl.addLabel("transition");
-    // // animate to forth panel
-    // // tl.to("#track", { duration: 1, z: -150, delay: 1 });
-    // tl.to("#track", { x: "-60%" });
-    // // tl.to("#track", { duration: 1, z: 0 });
-    // tl.addLabel("transition");
-    // // animate to fifth panel
-    // // tl.to("#track", { duration: 1, z: -150, delay: 1 });
-    // tl.to("#track", { x: "-80%" });
-    // // tl.to("#track", { duration: 1, z: 0 });
-    // tl.addLabel("transition");
+    // setTimeline(timeline);
   };
 
   useEffect(() => {
@@ -153,8 +145,8 @@ const Carousel = (): React.ReactNode => {
 
   return (
     <>
-      <CarouselStyled onMouseMove={handleMouse}>
-        <div className="carouselContainer">
+      <CarouselStyled onMouseMove={handleMouse} className="carouselContainer">
+        <div className="track">
           {featuredItems.map(
             (
               { title, id, featuredImage, backgroundImage, author, when, link },
@@ -177,6 +169,7 @@ const Carousel = (): React.ReactNode => {
                   $backgroundImage={backgroundImage}
                   className={classNames("carouselItem", {
                     "-active": index === activeItem,
+                    "-last": isLastItem,
                   })}
                 >
                   <CarouselItemLayer />

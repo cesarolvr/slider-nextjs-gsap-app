@@ -5,8 +5,8 @@ import styled, { css } from 'styled-components';
 export const CarouselStyled = styled(motion.div)`
   width: 100vw;
   height: 100vh;
-
-  .carouselContainer {
+  
+  .track {
     width: 500%;
     height: 100%;
     display: flex;
@@ -18,12 +18,14 @@ export const CarouselStyled = styled(motion.div)`
 
 export const CarouselItem = styled.div<{ $backgroundImage?: StaticImageData }>`
   height: 100%;
-  width: 100%;
+  width: 20%;
   background-image: url(${props => props.$backgroundImage?.src});
   background-size: 150%;
   background-position: center center;
   background-repeat: no-repeat;
   position: relative;
+  transform-origin: center center;
+  overflow: hidden;
 `;
 
 export const CarouselControl = styled(motion.div)`

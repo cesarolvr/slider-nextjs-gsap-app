@@ -15,8 +15,8 @@ body {
   height: 100vh;
   padding: 0;
   margin: 0;
-  /* overflow-x: hidden;
-  overflow-y: scroll; */
+  overflow-x: hidden;
+  /* overflow-y: scroll; */
   overscroll-behavior: none;
 }
 
