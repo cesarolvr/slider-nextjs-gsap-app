@@ -1,7 +1,7 @@
 "use client";
 
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import { DOMElement, SyntheticEvent, useEffect, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -70,14 +70,15 @@ const Carousel = (): React.ReactNode => {
     return null;
   };
 
-  const x = useMotionValue(200);
-  const y = useMotionValue(200);
+  const x = useMotionValue(2);
+  const y = useMotionValue(2);
 
-  const rotateX = useTransform(y, [0, 0], [5, -5]);
-  const rotateY = useTransform(x, [0, 2000], [-15, 15]);
+  const rotateY = useTransform(y, [2000, 0], [10, -10]);
+  const rotateX = useTransform(x, [0, 2000], [-10, 10]);
 
-  const handleMouse = (event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
+  const handleMouse = (event: MouseEvent) => {
+    const target: HTMLElement = event?.currentTarget
+    const rect: DOMRect | null = target.getBoundingClientRect();
 
     x.set(event.clientX - rect.left);
     y.set(event.clientY - rect.top);
@@ -122,7 +123,7 @@ const Carousel = (): React.ReactNode => {
                 >
                   <PrevImage src={previewOfPrev} alt="" />
                 </PrevThumbnail>
-                <FeaturedItem style={{ rotateX, rotateY }}>
+                <FeaturedItem style={{ x: rotateX, y: rotateY, rotateY, rotateX }}>
                   <ImageWrapper>
                     <Overlay>
                       <Title>
