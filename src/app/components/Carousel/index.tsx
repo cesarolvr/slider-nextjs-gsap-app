@@ -118,28 +118,28 @@ const Carousel = (): React.ReactNode => {
           pin: true,
           pinSpacing: false,
           start: "top top",
-          end: () => "+=" + (trackWidth - innerWidth + 120),
+          end: () => `+=${trackWidth - innerWidth}`,
           scrub: true,
           // markers: true
         },
       })
-      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 1}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-1")
-      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 2}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-2")
-      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 3}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-3")
-      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 4}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-4")
-      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 5}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-5");
