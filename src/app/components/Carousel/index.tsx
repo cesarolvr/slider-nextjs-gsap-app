@@ -53,17 +53,20 @@ const Carousel = (): React.ReactNode => {
     window.localStorage.setItem("activeItem", index);
   };
 
+  const handleScrollTo = (label: string) => {
+    gsap.to(window, {
+      scrollTo: timeline.scrollTrigger.labelToScroll(label),
+      duration: 1,
+    });
+  };
+
   const goNext = (current: number): null => {
     if (current === featuredItems.length - 1) {
-      gsap.to(window, {
-        scrollTo: timeline.scrollTrigger.labelToScroll(`item-0`),
-      });
+      handleScrollTo(`item-0`);
       handleActiveItem(0);
       return null;
     }
-    gsap.to(window, {
-      scrollTo: timeline.scrollTrigger.labelToScroll(`item-${current + 1}`),
-    });
+    handleScrollTo(`item-${current + 1}`);
     handleActiveItem(current + 1);
 
     return null;
@@ -71,20 +74,12 @@ const Carousel = (): React.ReactNode => {
 
   const goPrev = (current: number): null => {
     if (current === 0) {
-      gsap.to(window, {
-        scrollTo: timeline.scrollTrigger.labelToScroll(
-          `item-${featuredItems.length - 1}`
-        ),
-      });
-
+      handleScrollTo(`item-${featuredItems.length - 1}`);
       handleActiveItem(featuredItems.length - 1);
       return null;
     }
 
-    gsap.to(window, {
-      scrollTo: timeline.scrollTrigger.labelToScroll(`item-${current - 1}`),
-    });
-    handleActiveItem(current - 1);
+    handleScrollTo(`item-${current - 1}`), handleActiveItem(current - 1);
 
     return null;
   };
@@ -108,9 +103,13 @@ const Carousel = (): React.ReactNode => {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     const track = document.querySelector(".track");
-    const container = document.querySelector(".carouselContainer");
+    const carouselItem = document.querySelector(".carouselItem");
+    const body = document.querySelector("body");
+
     const trackWidth = track.scrollWidth;
     const innerWidth = window.innerWidth;
+    body.style.height = `${trackWidth - innerWidth}px`;
+    console.log(trackWidth);
 
     const timeline = gsap
       .timeline({
@@ -119,9 +118,9 @@ const Carousel = (): React.ReactNode => {
           pin: true,
           pinSpacing: false,
           start: "top top",
-          end: () => "+=" + (trackWidth - innerWidth),
+          end: () => "+=" + (trackWidth - innerWidth + 120),
           scrub: true,
-          markers: true,
+          // markers: true
         },
       })
       .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
@@ -141,9 +140,9 @@ const Carousel = (): React.ReactNode => {
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-4")
       .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 5}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
-      .addLabel("item-5")
-      .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 5}px` });
+      .addLabel("item-5");
 
     setTimeline(timeline);
   };

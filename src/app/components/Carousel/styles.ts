@@ -4,11 +4,11 @@ import styled, { css } from 'styled-components';
 
 export const CarouselStyled = styled(motion.div)`
   width: 100vw;
-  height: 100vh;
   
   .track {
     width: 500%;
     height: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: start;
     flex-wrap: nowrap;
