@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import Image, { StaticImageData } from 'next/image';
 import styled, { css } from 'styled-components';
+import Image, { StaticImageData } from 'next/image';
 
 export const CarouselStyled = styled(motion.div)`
   width: 100vw;
   
   .track {
-    width: 500%;
+    width: 500vw;
     height: 100%;
     min-height: 100vh;
     display: flex;

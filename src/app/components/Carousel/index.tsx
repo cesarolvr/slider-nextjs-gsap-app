@@ -6,9 +6,6 @@ import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
-// Data
-import { featuredItems } from "@/data";
-
 // Components
 import Description from "../Description";
 
@@ -37,21 +34,14 @@ import {
   TitleCursorWrapper,
 } from "./styles";
 
-const Carousel = (): React.ReactNode => {
-  const [activeItem, setActiveItem]: Array<number | Function> = useState(0);
+const Carousel = ({
+  activeItem,
+  handleActiveItem,
+  slides,
+  setLiveProgress,
+}): React.ReactNode => {
   const [timeline, setTimeline]: Array<GSAPTimeline | Function | null> =
     useState(null);
-
-  useEffect(() => {
-    const savedActiveItem = window.localStorage.getItem("activeItem") || 0;
-
-    handleActiveItem(parseInt(savedActiveItem));
-  }, []);
-
-  const handleActiveItem = (index) => {
-    setActiveItem(index);
-    window.localStorage.setItem("activeItem", index);
-  };
 
   const handleScrollTo = (label: string) => {
     gsap.to(window, {
@@ -61,7 +51,7 @@ const Carousel = (): React.ReactNode => {
   };
 
   const goNext = (current: number): null => {
-    if (current === featuredItems.length - 1) {
+    if (current === slides.length - 1) {
       handleScrollTo(`item-0`);
       handleActiveItem(0);
       return null;
@@ -74,8 +64,8 @@ const Carousel = (): React.ReactNode => {
 
   const goPrev = (current: number): null => {
     if (current === 0) {
-      handleScrollTo(`item-${featuredItems.length - 1}`);
-      handleActiveItem(featuredItems.length - 1);
+      handleScrollTo(`item-${slides.length - 1}`);
+      handleActiveItem(slides.length - 1);
       return null;
     }
 
@@ -101,26 +91,24 @@ const Carousel = (): React.ReactNode => {
 
   const InitCarousel = () => {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-    const track = document.querySelector(".track");
-    const carouselItem = document.querySelector(".carouselItem");
     const body = document.querySelector("body");
 
-    const trackWidth = track.scrollWidth;
+    const trackWidth = body.scrollWidth;
     const innerWidth = window.innerWidth;
-    body.style.height = `${trackWidth - innerWidth}px`;
-    console.log(trackWidth);
 
     const timeline = gsap
       .timeline({
         scrollTrigger: {
-          trigger: ".track",
+          trigger: ".carouselContainer",
           pin: true,
           pinSpacing: false,
           start: "top top",
-          end: () => `+=${trackWidth - innerWidth}`,
+          endTrigger: "body",
+          end: "bottom bottom",
           scrub: true,
-          // markers: true
+          onUpdate: ({ progress }) => {
+            setLiveProgress(Math.round(progress * 100));
+          },
         },
       })
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
@@ -139,9 +127,6 @@ const Carousel = (): React.ReactNode => {
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 4}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-4")
-      .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
-      .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 5}px` })
-      .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-5");
 
     setTimeline(timeline);
@@ -150,28 +135,27 @@ const Carousel = (): React.ReactNode => {
   useEffect(() => {
     setTimeout(() => {
       InitCarousel();
-    }, 10);
+    }, 100);
   }, []);
 
   return (
     <>
       <CarouselStyled onMouseMove={handleMouse} className="carouselContainer">
         <div className="track">
-          {featuredItems.map(
+          {slides.map(
             (
               { title, id, featuredImage, backgroundImage, author, when, link },
               index
             ) => {
               const isFirstItem = index === 0;
-              const isLastItem = index === featuredItems.length - 1;
+              const isLastItem = index === slides.length - 1;
 
               const previewOfPrev =
-                featuredItems[
-                  isFirstItem ? featuredItems.length - 1 : index - 1
-                ].featuredImage;
+                slides[isFirstItem ? slides.length - 1 : index - 1]
+                  .featuredImage;
 
               const previewOfNext =
-                featuredItems[isLastItem ? 0 : index + 1].featuredImage;
+                slides[isLastItem ? 0 : index + 1].featuredImage;
 
               return (
                 <CarouselItem
@@ -247,10 +231,10 @@ const Carousel = (): React.ReactNode => {
                             }}
                           >
                             <p className={helvetica.className}>
-                              {activeItem + 1} of {featuredItems.length}
+                              {activeItem + 1} of {slides.length}
                             </p>
                             <div className="dots">
-                              {featuredItems.map((_, index) => {
+                              {slides.map((_, index) => {
                                 return (
                                   <div
                                     onClick={() => handleActiveItem(index)}

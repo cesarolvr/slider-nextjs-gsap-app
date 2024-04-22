@@ -1,120 +1,70 @@
 "use client";
 
 import { useEffect } from "react";
+import gsap from "gsap";
 
 // Styles
-import { CursorStyled, CursorCenter, CursorRing, CursorRingPlaceholder } from "./styles";
+import { CursorStyled } from "./styles";
 
-const Cursor = (): React.ReactNode => {
+const Cursor = ({ progress }): React.ReactNode => {
+  // var percentageComplete = 0.7;
+  // var strokeDashOffsetValue = 100 - percentageComplete * 100;
+  // var progressBar = document.querySelector(".js-progress-bar");
+  // progressBar.css("", strokeDashOffsetValue);
+
   useEffect(() => {
-    const initCursor = () => {
-      // var cursor = {
-      //   delay: 8,
-      //   _x: 0,
-      //   _y: 0,
-      //   endX: window.innerWidth / 2,
-      //   endY: window.innerHeight / 2,
-      //   cursorVisible: true,
-      //   cursorEnlarged: false,
-      //   $outline: document.querySelector("#cursor"),
+    const initCursor = (e) => {
+      const cursor = document.querySelector(".cursor-center");
+      const tail = document.querySelector(".cursor-tail");
 
-      //   init: function () {
-      //     this.outlineSize = this.$outline.offsetWidth;
+      gsap.set([cursor, tail], { opacity: 1 });
+      const cursorPosition = {
+        left: e.clientX,
+        top: e.clientY,
+      };
 
-      //     this.setupEventListeners();
-      //     this.animateDotOutline();
-      //   },
-
-      //   setupEventListeners: function () {
-      //     var self = this;
-
-      //     document.querySelectorAll("a, button").forEach(function (el) {
-      //       el.addEventListener("mouseover", function () {
-      //         self.cursorEnlarged = true;
-      //         self.toggleCursorSize();
-      //       });
-      //       el.addEventListener("mouseout", function () {
-      //         self.cursorEnlarged = false;
-      //         self.toggleCursorSize();
-      //       });
-      //     });
-
-      //     document.addEventListener("mousedown", function () {
-      //       self.cursorEnlarged = true;
-      //       self.toggleCursorSize();
-      //     });
-      //     document.addEventListener("mouseup", function () {
-      //       self.cursorEnlarged = false;
-      //       self.toggleCursorSize();
-      //     });
-
-      //     document.addEventListener("mousemove", function (e) {
-      //       self.cursorVisible = true;
-      //       self.toggleCursorVisibility();
-
-      //       self.endX = e.pageX;
-      //       self.endY = e.pageY;
-      //     });
-
-      //     document.addEventListener("mouseenter", function (e) {
-      //       self.cursorVisible = true;
-      //       self.toggleCursorVisibility();
-      //       self.$outline.style.opacity = 1;
-      //     });
-
-      //     document.addEventListener("mouseleave", function (e) {
-      //       self.cursorVisible = true;
-      //       self.toggleCursorVisibility();
-      //       self.$outline.style.opacity = 0;
-      //     });
-      //   },
-
-      //   animateDotOutline: function () {
-      //     var self = this;
-
-      //     self._x += (self.endX - self._x) / self.delay;
-      //     self._y += (self.endY - self._y) / self.delay;
-      //     self.$outline.style.top = self._y + "px";
-      //     self.$outline.style.left = self._x + "px";
-
-      //     requestAnimationFrame(this.animateDotOutline.bind(self));
-      //   },
-
-      //   toggleCursorSize: function () {
-      //     var self = this;
-
-      //     if (self.cursorEnlarged) {
-      //       self.$outline.style.transform = "translate(-50%, -50%) scale(2)";
-      //       self.$outline.style.borderColor = "white";
-      //     } else {
-      //       self.$outline.style.transform = "translate(-50%, -50%) scale(1)";
-      //       self.$outline.style.borderColor = "#3a3a3a";
-      //     }
-      //   },
-
-      //   toggleCursorVisibility: function () {
-      //     var self = this;
-
-      //     if (self.cursorVisible) {
-      //       self.$outline.style.opacity = 1;
-      //     } else {
-      //       self.$outline.style.opacity = 0;
-      //     }
-      //   },
-      // };
-
-      // cursor.init();
+      gsap.to(".cursor-center", {
+        left: cursorPosition.left,
+        top: cursorPosition.top,
+        height: "4px",
+        width: "4px",
+        duration: 0.2,
+      });
+      gsap.to(".cursor-tail", {
+        left: cursorPosition.left,
+        top: cursorPosition.top,
+        height: "40px",
+        width: "40px",
+        duration: 0.5,
+      });
     };
 
-    initCursor();
+    document.addEventListener("mousemove", initCursor);
   }, []);
+
+  console.log(progress);
 
   return (
     <div>
-      <CursorStyled id="cursor">
-        <CursorRingPlaceholder />
-        <CursorRing />
-        <CursorCenter />
+      <CursorStyled>
+        <div className="cursor-center" />
+        <div className="cursor-tail">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 34 34">
+            <circle
+              cx="16"
+              cy="16"
+              r="15.9155"
+              className="progress-bar__background"
+            />
+            <circle
+              cx="16"
+              cy="16"
+              r="15.9155"
+              stroke-dashoffset={100 - progress}
+              className="progress-bar__progress"
+            />
+          </svg>
+        </div>
       </CursorStyled>
     </div>
   );

@@ -3,39 +3,63 @@ import styled from 'styled-components';
 export const CursorStyled = styled.div`
   position: fixed;
   z-index: 12;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+  pointer-events: none;
 
-export const CursorRing = styled.div`
-  width: 40px;
-  height: 40px;
-  border: 1px solid white;
-  position: absolute;
-  border-radius: 50%;
-  clip-path: polygon(50% 0%, 50% 50%, 100% 50%, 100% 0%);
-`;
+  .cursor-center,
+  .cursor-tail {
+    opacity: 0;
+  }
 
-export const CursorRingPlaceholder = styled.div`
-  width: 40px;
-  height: 40px;
-  border: 1px solid white;
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.1;
-`;
+  .cursor-center {
+    mix-blend-mode: difference;
+    border-radius: 50px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: solid 1px #fff;
+  }
 
-export const CursorCenter = styled.div`
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
-  z-index: 13;
-`;
+  .cursor-tail {
+    border-radius: 50px;
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    mix-blend-mode: difference;
+    
+    svg {
+      transform: rotate(-90deg);
+    }
+  }
 
+  .cursor-center,
+  .cursor-tail {
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  .progress-bar__background {
+    position: fixed;
+    z-index: 14;
+    top: 0;
+    left: 0;
+    fill: none;
+    stroke-width: 2px;
+    stroke: rgba(255, 255, 255, 0.3);
+  }
+  
+  .progress-bar__progress {
+    position: fixed;
+    fill: none;
+    stroke: white;
+    z-index: 13;
+    stroke-opacity: 1;
+    stroke-dasharray: 100 100;
+    stroke-linecap: round;
+    stroke-width: 2px;
+  }
+`;

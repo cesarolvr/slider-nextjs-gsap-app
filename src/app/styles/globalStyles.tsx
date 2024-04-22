@@ -6,12 +6,14 @@ const GlobalStyle = createGlobalStyle`
 :root {
   * {
     box-sizing: border-box;
+    cursor: none;
   }
 }
 
 html,
 body {
   width: 100vw;
+  height: 500vw;
   padding: 0;
   margin: 0;
   overflow-x: hidden;
