@@ -38,40 +38,45 @@ import {
 } from "./styles";
 
 const Carousel = (): React.ReactNode => {
-  const isClient = !!(typeof window !== "undefined");
-  const savedActiveItem = isClient
-    ? window.localStorage.getItem("activeItem")
-    : null;
-  if (typeof window !== "undefined") {
-  }
-
-  const [activeItem, setActiveItem]: Array<number | Function> = useState(
-    savedActiveItem !== null ? parseInt(savedActiveItem) : 0
-  );
-  // const [timeline, setTimeline]: Array<GSAPTimeline | Function | null> =
-  //   useState(null);
+  const [activeItem, setActiveItem]: Array<number | Function> = useState(0);
+  const [timeline, setTimeline]: Array<GSAPTimeline | Function | null> =
+    useState(null);
 
   useEffect(() => {
-    window.localStorage.setItem("activeItem", activeItem.toString());
-  }, [activeItem]);
+    const savedActiveItem = window.localStorage.getItem("activeItem") || 0;
+
+    console.log(savedActiveItem);
+
+    handleActiveItem(parseInt(savedActiveItem));
+  }, []);
+
+  const handleActiveItem = (index) => {
+    setActiveItem(index);
+    window.localStorage.setItem("activeItem", index);
+  };
 
   const goNext = (current: number): null => {
-    // console.log(timeline)
     if (current === featuredItems.length - 1) {
-      setActiveItem(0);
+      timeline.seek(`item-0`);
+      handleActiveItem(0);
       return null;
     }
-    setActiveItem(current + 1);
+    console.log({ timeline, gsap, st: timeline.scrollTrigger });
+    gsap.to(window, {
+      scrollTo: timeline.scrollTrigger.labelToScroll(`item-${current + 1}`),
+    });
+    handleActiveItem(current + 1);
+    
 
     return null;
   };
 
   const goPrev = (current: number): null => {
     if (current === 0) {
-      setActiveItem(featuredItems.length - 1);
+      handleActiveItem(featuredItems.length - 1);
       return null;
     }
-    setActiveItem(current - 1);
+    handleActiveItem(current - 1);
 
     return null;
   };
@@ -106,35 +111,32 @@ const Carousel = (): React.ReactNode => {
           pin: true,
           pinSpacing: false,
           start: "top top",
-          end: () => {
-            console.log({ a: trackWidth - innerWidth });
-            return "+=" + (trackWidth - innerWidth);
-          },
+          end: () => "+=" + (trackWidth - innerWidth),
           scrub: true,
           markers: true,
         },
       })
-      .addLabel("first")
+      .addLabel("item-0")
       .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 1}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
-      .addLabel("second")
+      .addLabel("item-1")
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 2}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
-      .addLabel("third")
+      .addLabel("item-2")
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 3}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
-      .addLabel("forth")
+      .addLabel("item-3")
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 4}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
-      .addLabel("fifth")
+      .addLabel("item-4")
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 5}px` });
 
-    // setTimeline(timeline);
+    setTimeline(timeline);
   };
 
   useEffect(() => {
@@ -237,14 +239,13 @@ const Carousel = (): React.ReactNode => {
                             }}
                           >
                             <p className={helvetica.className}>
-                              {(activeItem + 1).toString()} of{" "}
-                              {featuredItems.length}
+                              {activeItem + 1} of {featuredItems.length}
                             </p>
                             <div className="dots">
                               {featuredItems.map((_, index) => {
                                 return (
                                   <div
-                                    onClick={() => setActiveItem(index)}
+                                    onClick={() => handleActiveItem(index)}
                                     key={index}
                                     className={classNames("dot", {
                                       "-active": activeItem === index,
