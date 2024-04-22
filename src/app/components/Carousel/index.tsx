@@ -2,11 +2,7 @@
 
 import classNames from "classnames";
 import { DOMElement, SyntheticEvent, useEffect, useState } from "react";
-import {
-  motion,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 // Data
 import { featuredItems } from "@/data";
@@ -37,6 +33,7 @@ import {
   TitleOverlay,
   FeaturedImage,
   FeaturedImageWrapper,
+  TitleCursorWrapper,
 } from "./styles";
 
 const Carousel = (): React.ReactNode => {
@@ -75,9 +72,10 @@ const Carousel = (): React.ReactNode => {
 
   const rotateY = useTransform(y, [2000, 0], [10, -10]);
   const rotateX = useTransform(x, [0, 2000], [-10, 10]);
+  const rotateXDelayed = useTransform(x, [0, 2000], [-15, 15]);
 
   const handleMouse = (event: MouseEvent) => {
-    const target: HTMLElement = event?.currentTarget
+    const target: HTMLElement = event?.currentTarget;
     const rect: DOMRect | null = target.getBoundingClientRect();
 
     x.set(event.clientX - rect.left);
@@ -123,39 +121,45 @@ const Carousel = (): React.ReactNode => {
                 >
                   <PrevImage src={previewOfPrev} alt="" />
                 </PrevThumbnail>
-                <FeaturedItem style={{ x: rotateX, y: rotateY, rotateY, rotateX }}>
+                <FeaturedItem
+                  style={{ x: rotateX, y: rotateY, rotateY, rotateX }}
+                >
                   <ImageWrapper>
                     <Overlay>
                       <Title>
                         <TitleOverlay>
-                          <motion.div
-                            initial={{ x: 200, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{
-                              ease: "easeInOut",
-                              duration: 0.7,
-                              stiffness: 400,
-                              damping: 40,
-                              delay: 0.7,
-                            }}
-                          >
-                            {title[0]}
-                          </motion.div>
+                          <TitleCursorWrapper style={{ x: rotateX }}>
+                            <motion.div
+                              initial={{ x: 200, opacity: 0 }}
+                              animate={{ x: 0, opacity: 1 }}
+                              transition={{
+                                ease: "easeInOut",
+                                duration: 0.7,
+                                stiffness: 400,
+                                damping: 40,
+                                delay: 0.7,
+                              }}
+                            >
+                              {title[0]}
+                            </motion.div>
+                          </TitleCursorWrapper>
                         </TitleOverlay>
                         <TitleOverlay>
-                          <motion.div
-                            initial={{ x: -200, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{
-                              ease: "easeInOut",
-                              duration: 0.7,
-                              stiffness: 400,
-                              damping: 40,
-                              delay: 0.7,
-                            }}
-                          >
-                            {title[1]}
-                          </motion.div>
+                          <TitleCursorWrapper style={{ x: rotateXDelayed }}>
+                            <motion.div
+                              initial={{ x: -200, opacity: 0 }}
+                              animate={{ x: 0, opacity: 1 }}
+                              transition={{
+                                ease: "easeInOut",
+                                duration: 0.7,
+                                stiffness: 400,
+                                damping: 40,
+                                delay: 0.7,
+                              }}
+                            >
+                              {title[1]}
+                            </motion.div>
+                          </TitleCursorWrapper>
                         </TitleOverlay>
                       </Title>
                       <CarouselControl
@@ -199,7 +203,7 @@ const Carousel = (): React.ReactNode => {
                       <FeaturedImage src={featuredImage} alt="" />
                     </FeaturedImageWrapper>
                     <TitleOutline>
-                      <div>
+                      <TitleCursorWrapper style={{ x: rotateX }}>
                         <motion.div
                           initial={{ x: 200, opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
@@ -213,8 +217,8 @@ const Carousel = (): React.ReactNode => {
                         >
                           {title[0]}
                         </motion.div>
-                      </div>
-                      <div>
+                      </TitleCursorWrapper>
+                      <TitleCursorWrapper style={{ x: rotateXDelayed }}>
                         <motion.div
                           initial={{ x: -200, opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
@@ -228,7 +232,7 @@ const Carousel = (): React.ReactNode => {
                         >
                           {title[1]}
                         </motion.div>
-                      </div>
+                      </TitleCursorWrapper>
                     </TitleOutline>
                   </ImageWrapper>
                 </FeaturedItem>

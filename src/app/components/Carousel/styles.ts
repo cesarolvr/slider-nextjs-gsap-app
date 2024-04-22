@@ -191,7 +191,7 @@ export const TitleOverlay = styled.div`
   overflow: hidden;
 `
 
-export const TitleOutline = styled.span`
+export const TitleOutline = styled(motion.span)`
   position: absolute;
   display: block;
   font-size: 220px;
@@ -207,4 +207,7 @@ export const TitleOutline = styled.span`
   text-shadow: none;
   text-wrap: nowrap;
   user-select: none;
+`;
+
+export const TitleCursorWrapper = styled(motion.div)`
 `;
