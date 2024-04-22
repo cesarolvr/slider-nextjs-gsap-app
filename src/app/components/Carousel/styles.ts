@@ -3,10 +3,26 @@ import Image, { StaticImageData } from 'next/image';
 import styled, { css } from 'styled-components';
 
 export const CarouselStyled = styled(motion.div)`
-  height: 100vh;
   width: 100vw;
-  display: flex;
-  overflow-x: scroll;
+  height: 100vh;
+
+  .carouselContainer {
+    width: 500%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    flex-wrap: nowrap;
+  }
+`;
+
+
+export const CarouselItem = styled.div<{ $backgroundImage?: StaticImageData }>`
+  height: 100%;
+  width: 100%;
+  background-image: url(${props => props.$backgroundImage?.src});
+  background-size: 150%;
+  background-position: center center;
+  background-repeat: no-repeat;
   position: relative;
 `;
 
@@ -52,27 +68,6 @@ export const CarouselControl = styled(motion.div)`
   }
 `;
 
-export const CarouselItem = styled.div<{ $backgroundImage?: StaticImageData }>`
-  height: 100vh;
-  width: 100vw;
-  flex-shrink: 0;
-  overflow: hidden;
-  background-image: url(${props => props.$backgroundImage?.src});
-  background-size: 150%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1;
-
-  &.-active {
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 8;
-  }
-`;
-
 export const CarouselItemLayer = styled.div`
   position: absolute;
   inset: 0;
@@ -101,7 +96,7 @@ export const PrevThumbnail = styled(motion.div)`
   bottom: 16px;
 
   img {
-    pointer-events: none;
+    /* pointer-events: none; */
   }
 `;
 
