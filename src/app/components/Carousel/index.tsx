@@ -2,7 +2,7 @@
 
 import classNames from "classnames";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
@@ -45,8 +45,6 @@ const Carousel = (): React.ReactNode => {
   useEffect(() => {
     const savedActiveItem = window.localStorage.getItem("activeItem") || 0;
 
-    console.log(savedActiveItem);
-
     handleActiveItem(parseInt(savedActiveItem));
   }, []);
 
@@ -57,25 +55,35 @@ const Carousel = (): React.ReactNode => {
 
   const goNext = (current: number): null => {
     if (current === featuredItems.length - 1) {
-      timeline.seek(`item-0`);
+      gsap.to(window, {
+        scrollTo: timeline.scrollTrigger.labelToScroll(`item-0`),
+      });
       handleActiveItem(0);
       return null;
     }
-    console.log({ timeline, gsap, st: timeline.scrollTrigger });
     gsap.to(window, {
       scrollTo: timeline.scrollTrigger.labelToScroll(`item-${current + 1}`),
     });
     handleActiveItem(current + 1);
-    
 
     return null;
   };
 
   const goPrev = (current: number): null => {
     if (current === 0) {
+      gsap.to(window, {
+        scrollTo: timeline.scrollTrigger.labelToScroll(
+          `item-${featuredItems.length - 1}`
+        ),
+      });
+
       handleActiveItem(featuredItems.length - 1);
       return null;
     }
+
+    gsap.to(window, {
+      scrollTo: timeline.scrollTrigger.labelToScroll(`item-${current - 1}`),
+    });
     handleActiveItem(current - 1);
 
     return null;
@@ -97,7 +105,7 @@ const Carousel = (): React.ReactNode => {
   };
 
   const InitCarousel = () => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     const track = document.querySelector(".track");
     const container = document.querySelector(".carouselContainer");
@@ -116,24 +124,25 @@ const Carousel = (): React.ReactNode => {
           markers: true,
         },
       })
-      .addLabel("item-0")
       .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 1}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
-      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
       .addLabel("item-1")
+      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 2}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
-      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
       .addLabel("item-2")
+      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 3}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
-      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
       .addLabel("item-3")
+      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 4}px` })
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
-      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
       .addLabel("item-4")
+      .to(".carouselItem", { scale: 0.9, borderRadius: "20px" })
+      .to(".carouselItem", { scale: 1, borderRadius: "0px" })
+      .addLabel("item-5")
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 5}px` });
 
     setTimeline(timeline);
