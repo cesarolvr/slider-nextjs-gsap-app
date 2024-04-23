@@ -181,7 +181,7 @@ const Carousel = ({
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
-                      delay: 0.3,
+                      delay: 3.3,
                       stiffness: 400,
                       damping: 40,
                     }}
@@ -204,7 +204,7 @@ const Carousel = ({
                                   duration: 0.7,
                                   stiffness: 400,
                                   damping: 40,
-                                  delay: 0.7,
+                                  delay: 3.7,
                                 }}
                               >
                                 {title[0]}
@@ -221,7 +221,7 @@ const Carousel = ({
                                   duration: 0.7,
                                   stiffness: 400,
                                   damping: 40,
-                                  delay: 0.7,
+                                  delay: 3.7,
                                 }}
                               >
                                 {title[1]}
@@ -233,7 +233,7 @@ const Carousel = ({
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{
-                            delay: 1.1,
+                            delay: 4.1,
                             stiffness: 400,
                             damping: 40,
                           }}
@@ -264,7 +264,7 @@ const Carousel = ({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
                           duration: 0.8,
-                          delay: 0.3,
+                          delay: 3.3,
                           stiffness: 400,
                           damping: 40,
                         }}
@@ -281,7 +281,7 @@ const Carousel = ({
                               duration: 0.7,
                               stiffness: 400,
                               damping: 40,
-                              delay: 0.7,
+                              delay: 3.7,
                             }}
                           >
                             {title[0]}
@@ -296,7 +296,7 @@ const Carousel = ({
                               duration: 0.7,
                               stiffness: 400,
                               damping: 40,
-                              delay: 0.7,
+                              delay: 3.7,
                             }}
                           >
                             {title[1]}
@@ -310,7 +310,7 @@ const Carousel = ({
                     initial={{ opacity: 0, x: 10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
-                      delay: 0.4,
+                      delay: 3.4,
                       stiffness: 400,
                       damping: 40,
                     }}

@@ -23,7 +23,7 @@ const Description = ({
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.5,
+          delay: 3.5,
           stiffness: 400,
           damping: 40,
         }}
@@ -34,7 +34,7 @@ const Description = ({
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.6,
+          delay: 3.6,
           stiffness: 400,
           damping: 40,
         }}
@@ -47,7 +47,7 @@ const Description = ({
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.7,
+          delay: 3.7,
           stiffness: 400,
           damping: 40,
         }}
