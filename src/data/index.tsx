@@ -12,7 +12,7 @@ import bgImage4 from "@/images/image04@2x.jpg";
 import ftImage5 from "@/images/image05.jpg";
 import bgImage5 from "@/images/image05@2x.jpg";
 
-type CarouselItem = {
+export type CarouselItemType = {
   backgroundImage: StaticImageData;
   featuredImage: StaticImageData;
   title: Array<string>;
@@ -22,7 +22,7 @@ type CarouselItem = {
   link: string;
 };
 
-export const featuredItems: Array<CarouselItem> = [
+export const featuredItems: Array<CarouselItemType> = [
   {
     backgroundImage: bgImage1,
     featuredImage: ftImage1,

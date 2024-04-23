@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 // Font
 import { helvetica } from "@/fonts";
 

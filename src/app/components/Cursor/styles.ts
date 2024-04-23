@@ -42,7 +42,7 @@ export const CursorStyled = styled.div`
     transform: translate(-50%, -50%) rotate(0deg);
   }
 
-  .progress-bar__background {
+  .cursor-background {
     position: fixed;
     z-index: 14;
     top: 0;
@@ -52,7 +52,7 @@ export const CursorStyled = styled.div`
     stroke: rgba(255, 255, 255, 0.3);
   }
   
-  .progress-bar__progress {
+  .cursor-progress {
     position: fixed;
     fill: none;
     stroke: white;

@@ -3,8 +3,9 @@
 import classNames from "classnames";
 import gsap from "gsap";
 import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import { CarouselItemType } from "@/data";
 
 // Components
 import Description from "../Description";
@@ -34,16 +35,23 @@ import {
   TitleCursorWrapper,
 } from "./styles";
 
+type CarouselParams = {
+  activeItem: number;
+  handleActiveItem: Function;
+  slides: Array<CarouselItemType>;
+  setLiveProgress: Function;
+};
+
 const Carousel = ({
   activeItem,
   handleActiveItem,
   slides,
   setLiveProgress,
-}): React.ReactNode => {
-  const [timeline, setTimeline]: Array<GSAPTimeline | Function | null> =
-    useState(null);
+}: CarouselParams): React.ReactNode => {
+  const [timeline, setTimeline]: Array<any> = useState(null);
 
-  const handleScrollTo = (label: string) => {
+  const handleScrollTo = (label: string): void => {
+    if (!timeline) return;
     gsap.to(window, {
       scrollTo: timeline.scrollTrigger.labelToScroll(label),
       duration: 1,
@@ -81,9 +89,9 @@ const Carousel = ({
   const rotateX = useTransform(x, [0, 2000], [-10, 10]);
   const rotateXDelayed = useTransform(x, [0, 2000], [-15, 15]);
 
-  const handleMouse = (event: MouseEvent) => {
-    const target: HTMLElement = event?.currentTarget;
-    const rect: DOMRect | null = target.getBoundingClientRect();
+  const handleMouse = (event: MouseEvent): void => {
+    const target: any = event?.currentTarget;
+    const rect: DOMRect = target?.getBoundingClientRect();
 
     x.set(event.clientX - rect.left);
     y.set(event.clientY - rect.top);
@@ -91,10 +99,9 @@ const Carousel = ({
 
   const InitCarousel = () => {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-    const body = document.querySelector("body");
+    const body: HTMLBodyElement | null = document.querySelector("body");
 
-    const trackWidth = body.scrollWidth;
-    const innerWidth = window.innerWidth;
+    const trackWidth = body ? body.scrollWidth : 0;
 
     const timeline = gsap
       .timeline({
@@ -139,11 +146,14 @@ const Carousel = ({
   }, []);
 
   return (
-    <CarouselStyled onMouseMove={handleMouse} className="carouselContainer">
+    <CarouselStyled
+      onMouseMove={(event: MouseEvent) => handleMouse(event)}
+      className="carouselContainer"
+    >
       <div className="track">
         {slides.map(
           (
-            { title, id, featuredImage, backgroundImage, author, when, link },
+            { title, id, featuredImage, backgroundImage, author, when, link }: CarouselItemType,
             index
           ) => {
             const isFirstItem = index === 0;

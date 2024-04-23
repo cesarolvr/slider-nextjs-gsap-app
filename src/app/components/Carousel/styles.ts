@@ -15,7 +15,6 @@ export const CarouselStyled = styled(motion.div)`
   }
 `;
 
-
 export const CarouselItem = styled.div<{ $backgroundImage?: StaticImageData }>`
   height: 100%;
   width: 20%;
@@ -96,10 +95,6 @@ export const PrevThumbnail = styled(motion.div)`
   ${ThumbnailSharedStyles};
   left: 16px;
   bottom: 16px;
-
-  img {
-    /* pointer-events: none; */
-  }
 `;
 
 export const PrevImage = styled(Image)`
@@ -138,14 +133,14 @@ export const FeaturedItem = styled(motion.div)`
 `;
 
 export const FeaturedImageWrapper = styled(motion.div)`
-    width: 100%;
-    height: 100%;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  position: relative;
 `;
 
 export const FeaturedImage = styled(Image)`
-    z-index: 3;
-    border-radius: 10px;
+  z-index: 3;
+  border-radius: 10px;
 `;
 
 export const ImageWrapper = styled.div`

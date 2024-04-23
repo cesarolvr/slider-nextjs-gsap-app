@@ -14,13 +14,14 @@ export default function Home() {
   const [activeItem, setActiveItem]: Array<number | Function> = useState(0);
   const [liveProgress, setLiveProgress]: Array<number | Function> = useState(0);
 
-  const handleActiveItem = (index) => {
+  const handleActiveItem = (index: number) => {
     setActiveItem(index);
-    window.localStorage.setItem("activeItem", index);
+    window.localStorage.setItem("activeItem", index.toString());
   };
 
   useEffect(() => {
-    const savedActiveItem = window.localStorage.getItem("activeItem") || 0;
+    const savedActiveItem: string =
+      window.localStorage.getItem("activeItem") || "0";
 
     handleActiveItem(parseInt(savedActiveItem));
   }, []);

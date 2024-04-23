@@ -6,14 +6,13 @@ import gsap from "gsap";
 // Styles
 import { CursorStyled } from "./styles";
 
-const Cursor = ({ progress }): React.ReactNode => {
-  // var percentageComplete = 0.7;
-  // var strokeDashOffsetValue = 100 - percentageComplete * 100;
-  // var progressBar = document.querySelector(".js-progress-bar");
-  // progressBar.css("", strokeDashOffsetValue);
+type CursorParams = {
+  progress: number;
+};
 
+const Cursor = ({ progress }: CursorParams): React.ReactNode => {
   useEffect(() => {
-    const initCursor = (e) => {
+    const initCursor = (e: MouseEvent) => {
       const cursor = document.querySelector(".cursor-center");
       const tail = document.querySelector(".cursor-tail");
 
@@ -42,26 +41,19 @@ const Cursor = ({ progress }): React.ReactNode => {
     document.addEventListener("mousemove", initCursor);
   }, []);
 
-  console.log(progress);
-
   return (
     <div>
       <CursorStyled>
         <div className="cursor-center" />
         <div className="cursor-tail">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 34 34">
-            <circle
-              cx="16"
-              cy="16"
-              r="15.9155"
-              className="progress-bar__background"
-            />
+            <circle cx="16" cy="16" r="15.9155" className="cursor-background" />
             <circle
               cx="16"
               cy="16"
               r="15.9155"
               stroke-dashoffset={100 - progress}
-              className="progress-bar__progress"
+              className="cursor-progress"
             />
           </svg>
         </div>
