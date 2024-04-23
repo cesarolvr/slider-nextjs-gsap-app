@@ -149,8 +149,8 @@ export const FeaturedImage = styled(Image)`
 `;
 
 export const ImageWrapper = styled.div`
-  width: 300px;
-  height: 398px;
+  width: 250px;
+  height: 331px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -185,8 +185,8 @@ export const Overlay = styled.div`
 
 export const Title = styled.h1`
   display: block;
-  font-size: 140px;
-  line-height: 112px;
+  font-size: 100px;
+  line-height: 80px;
   font-weight: normal;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -210,8 +210,8 @@ export const TitleOverlay = styled.div`
 export const TitleOutline = styled(motion.span)`
   position: absolute;
   display: block;
-  font-size: 140px;
-  line-height: 112px;
+  font-size: 100px;
+  line-height: 80px;
   font-weight: normal;
   letter-spacing: 4px;
   text-align: center;

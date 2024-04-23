@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const DescriptionStyled = styled(motion.section)`
   position: absolute;
-  bottom: 50px;
+  bottom: 100px;
   right: 50px;
   z-index: 5;
   text-transform: uppercase;
@@ -13,6 +13,7 @@ export const DescriptionStyled = styled(motion.section)`
   font-size: 10px;
   
   @media (min-width: 1024px) {
+    bottom: 50px;
     right: 100px;
   }
 `;
