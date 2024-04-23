@@ -52,7 +52,7 @@ const Cursor = ({ progress }: CursorParams): React.ReactNode => {
               cx="16"
               cy="16"
               r="15.9155"
-              stroke-dashoffset={100 - progress}
+              strokeDashoffset={100 - progress}
               className="cursor-progress"
             />
           </svg>

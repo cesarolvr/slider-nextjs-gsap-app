@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CursorStyled = styled.div`
   position: fixed;
-  z-index: 12;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: center;

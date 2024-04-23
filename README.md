@@ -14,7 +14,7 @@ This challenge consists of a page with 1 major component: A kind of Slider/Carou
 - **Framer Motion** - To be honest, I never used it before but I accepted the challengde. Just loved it.
 - **GSAP** - No justification here. It's just one of the better solutions for animations (in my opinion). But was my first time using ScrollTrigger, and when I needed to work with timelines I chose ScrollMagic instead.
 - **Styled Components** - To allow me write CSS-in-JS. During most part of my career I did all this interactions only with vanilla CSS, but to be honest I don't have a favorite. Styles Components fit well here.
-- **Jest** - To run my tests pipeline and create some unit tests.
+- **Jest** - No excuses for no tests.
 - **GitHub Actions** - To deploy and also to run the tests automatically when updating main or opening new PR.
 - **AWS** - To serve. I uploaded on a simple S3 bucket, with a CDN in front of it (Cloudfront).
 

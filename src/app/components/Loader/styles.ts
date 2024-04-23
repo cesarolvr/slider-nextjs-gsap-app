@@ -5,17 +5,55 @@ export const LoaderStyled = styled.div`
   inset: 0;
   width: 100vw;
   height: 100vh;
- 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 18;
   background-color: black;
-  opacity: 0;
   pointer-events: none;
+  height: 0;
+  transition: height 0.6s ease;
+  overflow: hidden;
 
   &.-isLoading {
-    opacity: 1;
     pointer-events: auto;
-    z-index: 18;
+    height: 100vh;
   }
+`;
+
+export const LoaderContent = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const LoaderTitle = styled.div`
+  display: block;
+  font-size: 220px;
+  font-weight: normal;
+  letter-spacing: 4px;
+  line-height: 176px;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 2;
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
+  text-shadow: none;
+  text-wrap: nowrap;
+
+  span {
+    font-size: 100px;
+  }
+`;
+
+export const LoaderPercentage = styled.div`
+  display: block;
+  font-size: 220px;
+  font-weight: normal;
+  letter-spacing: 4px;
+  line-height: 176px;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 2;
+  color: white;
 `;
