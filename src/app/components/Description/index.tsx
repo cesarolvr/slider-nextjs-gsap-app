@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 // Font
 import { helvetica } from "@/fonts";
 
@@ -52,7 +54,8 @@ const Description = ({
           damping: 40,
         }}
       >
-        have a look
+        <span />
+        <strong>have a look</strong>
       </Button>
     </DescriptionStyled>
   );

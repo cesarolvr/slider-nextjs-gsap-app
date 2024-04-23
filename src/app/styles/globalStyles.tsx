@@ -31,6 +31,11 @@ a {
 }
 
 ::selection { background: white; color: black }
+
+@keyframes pingPingButtonText {
+ 0% { transform: translateX(30px) scale(2); }
+ 100% { transform: translateX(-30px) scale(2) }
+}
 `;
 
 export default GlobalStyle;

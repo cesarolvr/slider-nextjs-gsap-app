@@ -25,10 +25,44 @@ export const Time = styled(motion.time)`
 `;
 
 export const Button = styled(motion.a)`
-  background-color: white;
-  padding: 12px;
-  color: black;
-  text-align: center;
-  border-radius: 24px;
-  font-weight: bold;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-radius: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border: 1px solid white;
+
+    span {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background-color: black;
+      z-index: 4;
+      transform: scaleX(0);
+      transform-origin: center left;
+      transition: transform 0.3s ease;
+    }
+
+    strong {
+      position: relative;
+      z-index: 5;
+    }
+
+    &:hover {
+      border: 1px solid white;
+
+      strong {
+        animation: 1s linear infinite running pingPingButtonText alternate;
+        display: inline-block;
+      }
+    }
 `;
