@@ -1,9 +1,9 @@
 
 ## 📸 xyzphotography
-This test consists of a page with 1 major components: Working as Slider/Carousel to show some arts (photographs).
+This challenge consists of a page with 1 major component: A kind of Slider/Carousel to show some arts (photographs).
 
 ### Demo
-Link soon...
+[xyzphotography.cesarolvr.com.br](xyzphotography.cesarolvr.com.br)
 
 ### What was used
 
@@ -12,11 +12,11 @@ Link soon...
 - **TypeScript** - To type the code.
 - **Classnames** - To bind CSS classes based a given state.
 - **Framer Motion** - To be honest, I never used it before but I accepted the challengde. Just loved it.
-- **GSAP** - No justification here. It's just one of the better solutions for animations (in my opinion). But was my first time using ScrollTrigger. I used to create with ScrollMagic instead.
-- **Styled Components** - To allow me write CSS-in-JS. I used to build all this interactions only with vanilla CSS, but to be honest I don't have a favorite.
+- **GSAP** - No justification here. It's just one of the better solutions for animations (in my opinion). But was my first time using ScrollTrigger, and when I needed to work with timelines I chose ScrollMagic instead.
+- **Styled Components** - To allow me write CSS-in-JS. During most part of my career I did all this interactions only with vanilla CSS, but to be honest I don't have a favorite. Styles Components fit well here.
 - **Jest** - To run my tests pipeline and create some unit tests.
 - **GitHub Actions** - To deploy and also to run the tests automatically when updating main or opening new PR.
-- **AWS** - To serve.
+- **AWS** - To serve. I uploaded on a simple S3 bucket, with a CDN in front of it (Cloudfront).
 
 ### Getting started
 
