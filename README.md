@@ -3,7 +3,7 @@
 This challenge consists of a page with 1 major component: A kind of Slider/Carousel to show some arts (photographs).
 
 ### Demo
-[xyzphotography.cesarolvr.com.br](https://xyzphotography.cesarolvr.com.br)
+[xyzphotography.vercel.app](https://xyzphotography.vercel.app/)
 
 ### What was used
 
@@ -14,7 +14,8 @@ This challenge consists of a page with 1 major component: A kind of Slider/Carou
 - **Framer Motion** - To be honest, I never used it before but I accepted the challengde. Just loved it.
 - **GSAP** - No justification here. It's just one of the better solutions for animations (in my opinion). But was my first time using ScrollTrigger, and when I needed to work with timelines I chose ScrollMagic instead.
 - **Styled Components** - To allow me write CSS-in-JS. During most part of my career I did all this interactions only with vanilla CSS, but to be honest I don't have a favorite. Styles Components fit well here.
-- **Jest** - Soon...
+- **Cypress** - To E2E tests: Still working on it...
+- **Jest** - To unit tests: Still working on it...
 - **Vercel** - Just to serve.
 
 ### Getting started
@@ -34,4 +35,4 @@ yarn start
 This will generate static files and serve in a local server.
 
 **How to deploy new version:**
-Just push in the branch `main`.
+Just run `vercel deploy`.
