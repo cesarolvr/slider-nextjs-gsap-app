@@ -139,183 +139,182 @@ const Carousel = ({
   }, []);
 
   return (
-    <>
-      <CarouselStyled onMouseMove={handleMouse} className="carouselContainer">
-        <div className="track">
-          {slides.map(
-            (
-              { title, id, featuredImage, backgroundImage, author, when, link },
-              index
-            ) => {
-              const isFirstItem = index === 0;
-              const isLastItem = index === slides.length - 1;
+    <CarouselStyled onMouseMove={handleMouse} className="carouselContainer">
+      <div className="track">
+        {slides.map(
+          (
+            { title, id, featuredImage, backgroundImage, author, when, link },
+            index
+          ) => {
+            const isFirstItem = index === 0;
+            const isLastItem = index === slides.length - 1;
 
-              const previewOfPrev =
-                slides[isFirstItem ? slides.length - 1 : index - 1]
-                  .featuredImage;
+            const previewOfPrev =
+              slides[isFirstItem ? slides.length - 1 : index - 1].featuredImage;
 
-              const previewOfNext =
-                slides[isLastItem ? 0 : index + 1].featuredImage;
+            const previewOfNext =
+              slides[isLastItem ? 0 : index + 1].featuredImage;
 
-              return (
-                <CarouselItem
-                  key={`${index}-${id}`}
-                  $backgroundImage={backgroundImage}
-                  className={classNames("carouselItem", {
-                    "-active": index === activeItem,
-                    "-last": isLastItem,
-                  })}
-                >
-                  <CarouselItemLayer />
-                  <CarouselItemContent>
-                    <PrevThumbnail
-                      onClick={() => goPrev(index)}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{
-                        delay: 0.3,
-                        stiffness: 400,
-                        damping: 40,
-                      }}
-                    >
-                      <PrevImage src={previewOfPrev} alt="" />
-                    </PrevThumbnail>
-                    <FeaturedItem
-                      style={{ x: rotateX, y: rotateY, rotateY, rotateX }}
-                    >
-                      <ImageWrapper>
-                        <Overlay>
-                          <Title>
-                            <TitleOverlay>
-                              <TitleCursorWrapper style={{ x: rotateX }}>
-                                <motion.div
-                                  initial={{ x: 200, opacity: 0 }}
-                                  animate={{ x: 0, opacity: 1 }}
-                                  transition={{
-                                    ease: "easeInOut",
-                                    duration: 0.7,
-                                    stiffness: 400,
-                                    damping: 40,
-                                    delay: 0.7,
-                                  }}
-                                >
-                                  {title[0]}
-                                </motion.div>
-                              </TitleCursorWrapper>
-                            </TitleOverlay>
-                            <TitleOverlay>
-                              <TitleCursorWrapper style={{ x: rotateXDelayed }}>
-                                <motion.div
-                                  initial={{ x: -200, opacity: 0 }}
-                                  animate={{ x: 0, opacity: 1 }}
-                                  transition={{
-                                    ease: "easeInOut",
-                                    duration: 0.7,
-                                    stiffness: 400,
-                                    damping: 40,
-                                    delay: 0.7,
-                                  }}
-                                >
-                                  {title[1]}
-                                </motion.div>
-                              </TitleCursorWrapper>
-                            </TitleOverlay>
-                          </Title>
-                          <CarouselControl
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{
-                              delay: 1.1,
-                              stiffness: 400,
-                              damping: 40,
-                            }}
-                          >
-                            <p className={helvetica.className}>
-                              {activeItem + 1} of {slides.length}
-                            </p>
-                            <div className="dots">
-                              {slides.map((_, index) => {
-                                return (
-                                  <div
-                                    onClick={() => handleActiveItem(index)}
-                                    key={index}
-                                    className={classNames("dot", {
-                                      "-active": activeItem === index,
-                                    })}
-                                  />
-                                );
-                              })}
-                            </div>
-                          </CarouselControl>
-                        </Overlay>
-                        <FeaturedImageWrapper
-                          initial={{ opacity: 0, y: -20 }}
+            return (
+              <CarouselItem
+                key={`${index}-${id}`}
+                $backgroundImage={backgroundImage}
+                className={classNames("carouselItem", {
+                  "-active": index === activeItem,
+                  "-last": isLastItem,
+                })}
+              >
+                <CarouselItemLayer />
+                <CarouselItemContent>
+                  <PrevThumbnail
+                    onClick={() => goPrev(index)}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      delay: 0.3,
+                      stiffness: 400,
+                      damping: 40,
+                    }}
+                  >
+                    <PrevImage src={previewOfPrev} alt="" />
+                  </PrevThumbnail>
+                  <FeaturedItem
+                    style={{ x: rotateX, y: rotateY, rotateY, rotateX }}
+                  >
+                    <ImageWrapper>
+                      <Overlay>
+                        <Title>
+                          <TitleOverlay>
+                            <TitleCursorWrapper style={{ x: rotateX }}>
+                              <motion.div
+                                initial={{ x: 200, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{
+                                  ease: "easeInOut",
+                                  duration: 0.7,
+                                  stiffness: 400,
+                                  damping: 40,
+                                  delay: 0.7,
+                                }}
+                              >
+                                {title[0]}
+                              </motion.div>
+                            </TitleCursorWrapper>
+                          </TitleOverlay>
+                          <TitleOverlay>
+                            <TitleCursorWrapper style={{ x: rotateXDelayed }}>
+                              <motion.div
+                                initial={{ x: -200, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{
+                                  ease: "easeInOut",
+                                  duration: 0.7,
+                                  stiffness: 400,
+                                  damping: 40,
+                                  delay: 0.7,
+                                }}
+                              >
+                                {title[1]}
+                              </motion.div>
+                            </TitleCursorWrapper>
+                          </TitleOverlay>
+                        </Title>
+                        <CarouselControl
+                          initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{
-                            duration: 0.8,
-                            delay: 0.3,
+                            delay: 1.1,
                             stiffness: 400,
                             damping: 40,
                           }}
                         >
-                          <FeaturedImage src={featuredImage} alt="" />
-                        </FeaturedImageWrapper>
-                        <TitleOutline>
-                          <TitleCursorWrapper style={{ x: rotateX }}>
-                            <motion.div
-                              initial={{ x: 200, opacity: 0 }}
-                              animate={{ x: 0, opacity: 1 }}
-                              transition={{
-                                ease: "easeInOut",
-                                duration: 0.7,
-                                stiffness: 400,
-                                damping: 40,
-                                delay: 0.7,
-                              }}
-                            >
-                              {title[0]}
-                            </motion.div>
-                          </TitleCursorWrapper>
-                          <TitleCursorWrapper style={{ x: rotateXDelayed }}>
-                            <motion.div
-                              initial={{ x: -200, opacity: 0 }}
-                              animate={{ x: 0, opacity: 1 }}
-                              transition={{
-                                ease: "easeInOut",
-                                duration: 0.7,
-                                stiffness: 400,
-                                damping: 40,
-                                delay: 0.7,
-                              }}
-                            >
-                              {title[1]}
-                            </motion.div>
-                          </TitleCursorWrapper>
-                        </TitleOutline>
-                      </ImageWrapper>
-                    </FeaturedItem>
-                    <NextThumbnail
-                      onClick={() => goNext(index)}
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{
-                        delay: 0.4,
-                        stiffness: 400,
-                        damping: 40,
-                      }}
-                    >
-                      <NextImage src={previewOfNext} alt="" />
-                    </NextThumbnail>
-                  </CarouselItemContent>
-                  <Description author={author} when={when} link={link} />
-                </CarouselItem>
-              );
-            }
-          )}
-        </div>
-      </CarouselStyled>
-      {/* <div style={{ height: "100vh" }}>div</div> */}
-    </>
+                          <p className={helvetica.className}>
+                            {activeItem + 1} of {slides.length}
+                          </p>
+                          <div className="dots">
+                            {slides.map((_, index) => {
+                              return (
+                                <div
+                                  onClick={() => {
+                                    handleScrollTo(`item-${index}`);
+                                    handleActiveItem(index);
+                                  }}
+                                  key={index}
+                                  className={classNames("dot", {
+                                    "-active": activeItem === index,
+                                  })}
+                                />
+                              );
+                            })}
+                          </div>
+                        </CarouselControl>
+                      </Overlay>
+                      <FeaturedImageWrapper
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.8,
+                          delay: 0.3,
+                          stiffness: 400,
+                          damping: 40,
+                        }}
+                      >
+                        <FeaturedImage src={featuredImage} alt="" />
+                      </FeaturedImageWrapper>
+                      <TitleOutline>
+                        <TitleCursorWrapper style={{ x: rotateX }}>
+                          <motion.div
+                            initial={{ x: 200, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{
+                              ease: "easeInOut",
+                              duration: 0.7,
+                              stiffness: 400,
+                              damping: 40,
+                              delay: 0.7,
+                            }}
+                          >
+                            {title[0]}
+                          </motion.div>
+                        </TitleCursorWrapper>
+                        <TitleCursorWrapper style={{ x: rotateXDelayed }}>
+                          <motion.div
+                            initial={{ x: -200, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{
+                              ease: "easeInOut",
+                              duration: 0.7,
+                              stiffness: 400,
+                              damping: 40,
+                              delay: 0.7,
+                            }}
+                          >
+                            {title[1]}
+                          </motion.div>
+                        </TitleCursorWrapper>
+                      </TitleOutline>
+                    </ImageWrapper>
+                  </FeaturedItem>
+                  <NextThumbnail
+                    onClick={() => goNext(index)}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      delay: 0.4,
+                      stiffness: 400,
+                      damping: 40,
+                    }}
+                  >
+                    <NextImage src={previewOfNext} alt="" />
+                  </NextThumbnail>
+                </CarouselItemContent>
+                <Description author={author} when={when} link={link} />
+              </CarouselItem>
+            );
+          }
+        )}
+      </div>
+    </CarouselStyled>
   );
 };
 
