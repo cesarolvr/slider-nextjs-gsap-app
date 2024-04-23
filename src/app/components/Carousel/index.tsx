@@ -120,21 +120,25 @@ const Carousel = ({
       })
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 1}px` })
+      .add(() => handleActiveItem(1))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-1")
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 2}px` })
+      .add(() => handleActiveItem(2))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-2")
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 3}px` })
+      .add(() => handleActiveItem(3))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-3")
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 4}px` })
+      .add(() => handleActiveItem(4))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-4")
-      .addLabel("item-5");
+      .addLabel("item-5")
 
     setTimeline(timeline);
   };
@@ -142,6 +146,10 @@ const Carousel = ({
   useEffect(() => {
     setTimeout(() => {
       InitCarousel();
+
+      if (activeItem > 0) {
+        handleScrollTo(`item-${activeItem}`);
+      }
     }, 100);
   }, []);
 
@@ -153,7 +161,15 @@ const Carousel = ({
       <div className="track">
         {slides.map(
           (
-            { title, id, featuredImage, backgroundImage, author, when, link }: CarouselItemType,
+            {
+              title,
+              id,
+              featuredImage,
+              backgroundImage,
+              author,
+              when,
+              link,
+            }: CarouselItemType,
             index
           ) => {
             const isFirstItem = index === 0;

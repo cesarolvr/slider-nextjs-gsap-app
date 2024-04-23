@@ -18,15 +18,9 @@ export default function Home() {
 
   const handleActiveItem = (index: number) => {
     setActiveItem(index);
-    window.localStorage.setItem("activeItem", index.toString());
   };
 
   useEffect(() => {
-    const savedActiveItem: string =
-      window.localStorage.getItem("activeItem") || "0";
-
-    handleActiveItem(parseInt(savedActiveItem));
-
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
