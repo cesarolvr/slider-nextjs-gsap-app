@@ -28,7 +28,7 @@ export const LoaderContent = styled.div`
 
 export const LoaderTitle = styled.div`
   display: block;
-  font-size: 220px;
+  font-size: 100px;
   font-weight: normal;
   letter-spacing: 4px;
   line-height: 176px;
@@ -44,11 +44,15 @@ export const LoaderTitle = styled.div`
   span {
     font-size: 100px;
   }
+
+  @media (min-width: 1024px) {
+    font-size: 220px;
+  }
 `;
 
 export const LoaderPercentage = styled.div`
   display: block;
-  font-size: 220px;
+  font-size: 100px;
   font-weight: normal;
   letter-spacing: 4px;
   line-height: 176px;
@@ -56,4 +60,8 @@ export const LoaderPercentage = styled.div`
   text-align: center;
   z-index: 2;
   color: white;
+
+  @media (min-width: 1024px) {
+    font-size: 220px;
+  }
 `;

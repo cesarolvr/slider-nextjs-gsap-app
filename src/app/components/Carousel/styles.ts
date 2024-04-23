@@ -86,10 +86,15 @@ export const CarouselItemContent = styled.div`
 `;
 
 const ThumbnailSharedStyles = css`
-  width: 248px;
-  height: 330px;
+  width: 140px;
+  height: 186px;
   position: absolute;
   cursor: pointer;
+
+  @media (min-width: 1024px) {
+    width: 248px;
+    height: 330px;
+  }
 `
 export const PrevThumbnail = styled(motion.div)`
   ${ThumbnailSharedStyles};
@@ -144,38 +149,57 @@ export const FeaturedImage = styled(Image)`
 `;
 
 export const ImageWrapper = styled.div`
-  width: 512px;
-  height: 680px;
+  width: 300px;
+  height: 398px;
   display: flex;
   flex-direction: column;
   position: relative;
   align-items: center;
   justify-content: center;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 512px;
+    height: 680px;
+  }
 `;
 
 export const Overlay = styled.div`
   width: 100%;
-  height: 57%;
+  height: 75%;
   overflow: hidden;
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+
+  @media (min-width: 1024px) {
+    height: 57%;
+  }
 `;
 
 export const Title = styled.h1`
   display: block;
-  font-size: 220px;
+  font-size: 140px;
+  line-height: 112px;
   font-weight: normal;
   letter-spacing: 4px;
-  line-height: 176px;
   text-transform: uppercase;
   text-align: center;
   z-index: 4;
   -webkit-text-stroke: 1px white;
 	text-stroke: 1px white;
   text-wrap: nowrap;
+
+  @media (min-width: 1024px) {
+    font-size: 220px;
+    line-height: 176px;
+  }
 `;
 
 
@@ -186,10 +210,10 @@ export const TitleOverlay = styled.div`
 export const TitleOutline = styled(motion.span)`
   position: absolute;
   display: block;
-  font-size: 220px;
+  font-size: 140px;
+  line-height: 112px;
   font-weight: normal;
   letter-spacing: 4px;
-  line-height: 176px;
   text-transform: uppercase;
   text-align: center;
   z-index: 2;
@@ -199,6 +223,11 @@ export const TitleOutline = styled(motion.span)`
   text-shadow: none;
   text-wrap: nowrap;
   user-select: none;
+
+  @media (min-width: 1024px) {
+    font-size: 220px;
+    line-height: 176px;
+  }
 `;
 
 export const TitleCursorWrapper = styled(motion.div)`

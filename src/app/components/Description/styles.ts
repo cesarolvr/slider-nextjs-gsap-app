@@ -3,14 +3,18 @@ import { motion } from 'framer-motion';
 
 export const DescriptionStyled = styled(motion.section)`
   position: absolute;
-  bottom: 100px;
-  right: 100px;
+  bottom: 50px;
+  right: 50px;
   z-index: 5;
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
   width: 109px;
   font-size: 10px;
+  
+  @media (min-width: 1024px) {
+    right: 100px;
+  }
 `;
 
 export const Author = styled(motion.h2)`
