@@ -26,6 +26,7 @@ Tasks I see as an improvement and I'm still working on.
 - **Unit tests** - It's hard to write unit tests now because the main function are't pure, and it makes harder to test input/output. Working on it...
 - **Nice domain** - The plan was deploy with https://xyzphotography.cesarolvr.com but I'm still validating a certificate to this subdomain. Just a detail...
 - **Lighthouse** - There are some possible savings on mobile devices. Anyway, the current version is not that bad.
+- **Working inside safe area** - In some mobile devices, the page height is respecting viewport safe area (svh).
 
 ### Getting started
 
