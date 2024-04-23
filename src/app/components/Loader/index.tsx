@@ -28,7 +28,7 @@ const Loader = ({ isLoading }: LoaderParams) => {
       })}
     >
       <LoaderContent>
-        <LoaderTitle>xyz <span>📸</span></LoaderTitle>
+        <LoaderTitle><span>📸</span></LoaderTitle>
         <LoaderPercentage id="progress" />
       </LoaderContent>
     </LoaderStyled>

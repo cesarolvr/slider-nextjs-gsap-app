@@ -214,10 +214,10 @@ export const TitleOutline = styled(motion.span)`
   line-height: 112px;
   font-weight: normal;
   letter-spacing: 4px;
-  text-transform: uppercase;
   text-align: center;
   z-index: 2;
   color: transparent;
+  text-transform: uppercase;
   -webkit-text-stroke: 1px white;
 	text-stroke: 1px white;
   text-shadow: none;

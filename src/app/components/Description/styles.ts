@@ -65,7 +65,7 @@ export const Button = styled(motion.a)`
       border: 1px solid white;
 
       strong {
-        animation: 1s linear infinite running pingPingButtonText alternate;
+        animation: 2s linear infinite running pingPingButtonText alternate;
         display: inline-block;
       }
     }

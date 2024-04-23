@@ -43,6 +43,7 @@ export const LoaderTitle = styled.div`
 
   span {
     font-size: 100px;
+    margin-left: 10px;
   }
 
   @media (min-width: 1024px) {
@@ -59,7 +60,12 @@ export const LoaderPercentage = styled.div`
   text-transform: uppercase;
   text-align: center;
   z-index: 2;
-  color: white;
+  color: transparent;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1px white;
+	text-stroke: 1px white;
+  text-shadow: none;
+  text-wrap: nowrap;
 
   @media (min-width: 1024px) {
     font-size: 220px;
