@@ -35,7 +35,6 @@ export const CarouselControl = styled(motion.div)`
   align-items: center;
 
   @media (min-width: 992px) {
-    /* top: calc(100% - 24px); */
     bottom: 15%;
   }
   
@@ -102,10 +101,15 @@ export const CarouselItemContent = styled.div`
 `;
 
 const ThumbnailSharedStyles = css`
-  width: 140px;
-  height: 186px;
+  width: 120px;
+  height: 126px;
   position: absolute;
   cursor: pointer;
+
+  @media (min-width: 420px) {
+    width: 140px;
+    height: 186px;
+  }
 
   @media (min-width: 992px) {
     width: 248px;
@@ -114,8 +118,13 @@ const ThumbnailSharedStyles = css`
 `
 export const PrevThumbnail = styled(motion.div)`
   ${ThumbnailSharedStyles};
-  left: -5px;
-  bottom: -5px;
+  left: -10px;
+  bottom: -10px;
+
+  @media (min-width: 420px) {
+    left: -5px;
+    bottom: -5px;
+  }
 
   @media (min-width: 992px) {
     left: 16px;
@@ -141,6 +150,7 @@ export const NextImage = styled(Image)`
   border-radius: 10px;
   transition: transform 0.3s ease;
   transform-origin: top right;
+  object-fit: cover;
   
   &:hover {
     transform: scale(1.1);
@@ -149,18 +159,27 @@ export const NextImage = styled(Image)`
 
 export const NextThumbnail = styled(motion.div)`
   ${ThumbnailSharedStyles};
-  right: -5px;
-  top: -5px;
+  right: -10px;
+  top: -10px;
+
+  @media (min-width: 420px) {
+    right: -5px;
+    top: -5px;
+  }
 
   @media (min-width: 992px) {
     right: 16px;
-  top: 16px;
+    top: 16px;
   }
 `;
 
 
 export const FeaturedItem = styled(motion.div)`
   position: relative;
+
+  @media (max-width: 992px) {
+   transform: none !important;
+  }
 `;
 
 export const FeaturedImageWrapper = styled(motion.div)`

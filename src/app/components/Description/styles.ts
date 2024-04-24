@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 
 export const DescriptionStyled = styled(motion.section)`
   position: absolute;
-  bottom: 40px;
-  right: 50px;
+  bottom: 30px;
+  right: 30px;
   z-index: 5;
   text-transform: uppercase;
   display: flex;
@@ -25,8 +25,12 @@ export const Author = styled(motion.h2)`
 `;
 
 export const Time = styled(motion.time)`
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   text-align: right;
+
+  @media (min-width: 992px) {
+    margin-bottom: 15px;
+  }
 `;
 
 export const Button = styled(motion.a)`
