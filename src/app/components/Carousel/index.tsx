@@ -84,11 +84,10 @@ const Carousel = ({
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
   const isDesktop = typeof window !== "undefined" && window.innerWidth > 992;
-  const rotateY = isDesktop ? useTransform(y, [2000, 0], [10, -10]) : 0;
-  const rotateX = isDesktop ? useTransform(x, [0, 2000], [-10, 10]) : 0;
-  const rotateXDelayed = isDesktop ? useTransform(x, [0, 2000], [-15, 15]) : 0;
+  const rotateY = useTransform(y, [2000, 0], [10, -10]);
+  const rotateX = useTransform(x, [0, 2000], [-10, 10]);
+  const rotateXDelayed = useTransform(x, [0, 2000], [-15, 15]);
 
   const handleMouse = (event: MouseEvent): void => {
     const target: any = event?.currentTarget;
