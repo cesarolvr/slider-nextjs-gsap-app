@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import Carousel from "@/app/components/Carousel";
 import Header from "@/app/components/Header";
 import Cursor from "@/app/components/Cursor";
-import Loader from "@/app/components/Loader";
 
 // Data
 import { featuredItems } from "@/data";
+import dynamic from "next/dynamic";
+
+const Loader = dynamic(() => import("./components/Loader"));
 
 export default function Home() {
   const [isLoading, setIsLoading]: Array<boolean | Function> = useState(true);
