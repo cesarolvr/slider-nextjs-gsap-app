@@ -11,7 +11,7 @@ import ftImage5 from "@/images/image05.jpg";
 import bgImage5 from "@/images/image05@2x.jpg";
 
 // Types
-import { CarouselItemType } from "@/app/components/Carousel/types";
+import { type CarouselItemType } from "@/app/components/Carousel/types";
 
 export const featuredItems: Array<CarouselItemType> = [
   {

@@ -10,7 +10,7 @@ type CursorParams = {
   progress: number;
 };
 
-const Cursor = ({ progress }: CursorParams): React.ReactNode => {
+export const Cursor = ({ progress }: CursorParams): React.ReactNode => {
   useEffect(() => {
     const initCursor = (e: MouseEvent) => {
       const cursor = document.querySelector(".cursor-center");
@@ -61,5 +61,3 @@ const Cursor = ({ progress }: CursorParams): React.ReactNode => {
     </div>
   );
 };
-
-export default Cursor;

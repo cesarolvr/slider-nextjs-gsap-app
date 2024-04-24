@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const LoaderStyled = styled.div`
   position: fixed;
@@ -24,7 +24,7 @@ export const LoaderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 export const LoaderTitle = styled.div`
   display: block;
@@ -63,7 +63,7 @@ export const LoaderPercentage = styled.div`
   color: transparent;
   text-transform: uppercase;
   -webkit-text-stroke: 1px white;
-	text-stroke: 1px white;
+  text-stroke: 1px white;
   text-shadow: none;
   text-wrap: nowrap;
 

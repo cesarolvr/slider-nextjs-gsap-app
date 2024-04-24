@@ -28,11 +28,12 @@ const Loader = ({ isLoading }: LoaderParams) => {
       })}
     >
       <LoaderContent>
-        <LoaderTitle><span>📸</span></LoaderTitle>
+        <LoaderTitle>
+          <span>📸</span>
+        </LoaderTitle>
         <LoaderPercentage id="progress" />
       </LoaderContent>
     </LoaderStyled>
   );
 };
-
 export default Loader;

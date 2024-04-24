@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CursorStyled = styled.div`
   position: fixed;
@@ -29,7 +29,7 @@ export const CursorStyled = styled.div`
     width: 4px;
     height: 4px;
     mix-blend-mode: difference;
-    
+
     svg {
       transform: rotate(-90deg);
     }
@@ -51,7 +51,7 @@ export const CursorStyled = styled.div`
     stroke-width: 2px;
     stroke: rgba(255, 255, 255, 0.3);
   }
-  
+
   .cursor-progress {
     position: fixed;
     fill: none;

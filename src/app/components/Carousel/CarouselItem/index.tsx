@@ -4,12 +4,6 @@ import classNames from "classnames";
 import { motion } from "framer-motion";
 
 // Components
-import Description from "@/app/components/Description";
-
-// Fonts
-import { helvetica } from "@/fonts";
-
-// Styles
 import {
   CarouselItemStyled,
   CarouselItemLayer,
@@ -29,9 +23,15 @@ import {
   FeaturedImageWrapper,
   TitleCursorWrapper,
 } from "../styles";
-import { CarouselItemComponentType } from "../types";
+import { type CarouselItemComponentType } from "../types";
+import { Description } from "@/app/components/Description";
 
-const CarouselItem = ({
+// Fonts
+import { helvetica } from "@/fonts";
+
+// Styles
+
+export const CarouselItem = ({
   index,
   handleActiveItem,
   handleScrollTo,
@@ -215,5 +215,3 @@ const CarouselItem = ({
     </CarouselItemStyled>
   );
 };
-
-export default CarouselItem;

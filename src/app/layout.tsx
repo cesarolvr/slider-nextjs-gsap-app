@@ -5,7 +5,7 @@ import { tungsten } from "@/fonts";
 
 // Styles
 import StyledWrapper from "@/app/components/StyledWrapper";
-import GlobalStyle from "@/app/styles/globalStyles";
+import { GlobalStyle } from "@/app/styles/globalStyles";
 
 export const metadata: Metadata = {
   title: "xyzphotography",

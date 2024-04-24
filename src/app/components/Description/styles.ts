@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const DescriptionStyled = styled(motion.section)`
   position: absolute;
@@ -11,7 +11,7 @@ export const DescriptionStyled = styled(motion.section)`
   flex-direction: column;
   width: 109px;
   font-size: 10px;
-  
+
   @media (min-width: 992px) {
     bottom: 50px;
     right: 100px;
@@ -34,44 +34,44 @@ export const Time = styled(motion.time)`
 `;
 
 export const Button = styled(motion.a)`
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid white;
+
+  span {
+    position: absolute;
     width: 100%;
-    height: 100%;
-    padding: 12px;
-    background-color: white;
-    color: black;
-    text-align: center;
-    border-radius: 24px;
-    font-weight: bold;
-    margin-top: 10px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: black;
+    z-index: 4;
+    transform: scaleX(0);
+    transform-origin: center left;
+    transition: transform 0.3s ease;
+  }
+
+  strong {
     position: relative;
-    display: block;
-    overflow: hidden;
+    z-index: 5;
+  }
+
+  &:hover {
     border: 1px solid white;
 
-    span {
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      background-color: black;
-      z-index: 4;
-      transform: scaleX(0);
-      transform-origin: center left;
-      transition: transform 0.3s ease;
-    }
-
     strong {
-      position: relative;
-      z-index: 5;
+      animation: 2s linear infinite running pingPingButtonText alternate;
+      display: inline-block;
     }
-
-    &:hover {
-      border: 1px solid white;
-
-      strong {
-        animation: 2s linear infinite running pingPingButtonText alternate;
-        display: inline-block;
-      }
-    }
+  }
 `;

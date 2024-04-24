@@ -1,15 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
 // Components
-import Carousel from "@/app/components/Carousel";
-import Header from "@/app/components/Header";
-import Cursor from "@/app/components/Cursor";
+import { Carousel } from "@/app/components/Carousel";
+import { Header } from "@/app/components/Header";
+import { Cursor } from "@/app/components/Cursor";
 
 // Data
 import { featuredItems } from "@/data";
-import dynamic from "next/dynamic";
 
 const Loader = dynamic(() => import("./components/Loader"));
 

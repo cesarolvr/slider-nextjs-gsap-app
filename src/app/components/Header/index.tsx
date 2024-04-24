@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 // Styles
 import { HeaderStyled, LogoWrapper } from "./styles";
 
-
-const Header = (): React.ReactNode => {
+export const Header = (): React.ReactNode => {
   return (
     <HeaderStyled>
       <LogoWrapper>
@@ -21,5 +20,3 @@ const Header = (): React.ReactNode => {
     </HeaderStyled>
   );
 };
-
-export default Header;

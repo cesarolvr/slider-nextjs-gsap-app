@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion';
-import styled, { css } from 'styled-components';
-import Image, { StaticImageData } from 'next/image';
+import { motion } from "framer-motion";
+import styled, { css } from "styled-components";
+import Image, { type StaticImageData } from "next/image";
 
 export const CarouselStyled = styled(motion.div)`
   width: 100vw;
-  
+
   .track {
     width: 500vw;
     height: 100svh;
@@ -15,10 +15,12 @@ export const CarouselStyled = styled(motion.div)`
   }
 `;
 
-export const CarouselItemStyled = styled.div<{ $backgroundImage?: StaticImageData }>`
+export const CarouselItemStyled = styled.div<{
+  $backgroundImage?: StaticImageData;
+}>`
   height: 100%;
   width: 20%;
-  background-image: url(${props => props.$backgroundImage?.src});
+  background-image: url(${(props) => props.$backgroundImage?.src});
   background-size: 150%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -36,9 +38,9 @@ export const CarouselControl = styled(motion.div)`
   align-items: center;
 
   @media (min-width: 992px) {
-    top: calc(50% + 165px)
+    top: calc(50% + 165px);
   }
-  
+
   p {
     font-size: 12px;
     text-transform: uppercase;
@@ -117,7 +119,7 @@ const ThumbnailSharedStyles = css`
     width: 248px;
     height: 330px;
   }
-`
+`;
 export const PrevThumbnail = styled(motion.div)`
   ${ThumbnailSharedStyles};
   left: -10px;
@@ -141,7 +143,7 @@ export const PrevImage = styled(Image)`
   transition: transform 0.3s ease;
   transform-origin: bottom left;
   object-fit: cover;
-  
+
   &:hover {
     transform: scale(1.1);
   }
@@ -154,7 +156,7 @@ export const NextImage = styled(Image)`
   transition: transform 0.3s ease;
   transform-origin: top right;
   object-fit: cover;
-  
+
   &:hover {
     transform: scale(1.1);
   }
@@ -176,12 +178,11 @@ export const NextThumbnail = styled(motion.div)`
   }
 `;
 
-
 export const FeaturedItem = styled(motion.div)`
   position: relative;
 
   @media (max-width: 992px) {
-   transform: none !important;
+    transform: none !important;
   }
 `;
 
@@ -227,10 +228,6 @@ export const Overlay = styled.div`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-
-  /* @media (min-width: 992px) {
-    height: 100%;
-  } */
 `;
 
 export const Title = styled.h1`
@@ -243,7 +240,7 @@ export const Title = styled.h1`
   text-align: center;
   z-index: 4;
   -webkit-text-stroke: 1px white;
-	text-stroke: 1px white;
+  text-stroke: 1px white;
   text-wrap: nowrap;
 
   @media (min-width: 992px) {
@@ -252,10 +249,9 @@ export const Title = styled.h1`
   }
 `;
 
-
 export const TitleOverlay = styled.div`
   overflow: hidden;
-`
+`;
 
 export const TitleOutline = styled(motion.span)`
   position: absolute;
@@ -269,7 +265,7 @@ export const TitleOutline = styled(motion.span)`
   color: transparent;
   text-transform: uppercase;
   -webkit-text-stroke: 1px white;
-	text-stroke: 1px white;
+  text-stroke: 1px white;
   text-shadow: none;
   text-wrap: nowrap;
   user-select: none;

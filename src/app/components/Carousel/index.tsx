@@ -1,19 +1,19 @@
 "use client";
 
-import { MouseEvent, useEffect } from "react";
+import { type MouseEvent, useEffect } from "react";
 
 // Styles
 import { CarouselStyled } from "./styles";
 
 // Hooks
-import useCarouselHandlers from "./useCarouselHandlers";
-import useMouseMovement from "./useMouseMovement";
+import { useCarouselHandlers } from "./useCarouselHandlers";
+import { useMouseMovement } from "./useMouseMovement";
 
 // Types
-import { CarouselParams } from "./types";
-import CarouselItem from "./CarouselItem";
+import { type CarouselParams } from "./types";
+import { CarouselItem } from "./CarouselItem";
 
-const Carousel = ({
+export const Carousel = ({
   activeItem,
   handleActiveItem,
   slides,
@@ -71,5 +71,3 @@ const Carousel = ({
     </CarouselStyled>
   );
 };
-
-export default Carousel;

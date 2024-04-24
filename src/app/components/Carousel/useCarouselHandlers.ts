@@ -3,10 +3,13 @@ import gsap from "gsap";
 import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
 
 // Types
-import { UseCarouselParams } from "./types";
+import { type UseCarouselParams } from "./types";
 
-
-const useCarouselHandlers = ({ handleActiveItem, slides, setLiveProgress }: UseCarouselParams) => {
+export const useCarouselHandlers = ({
+  handleActiveItem,
+  slides,
+  setLiveProgress,
+}: UseCarouselParams) => {
   const [timeline, setTimeline]: Array<any> = useState(null);
 
   const handleScrollTo = (label: string): void => {
@@ -98,8 +101,6 @@ const useCarouselHandlers = ({ handleActiveItem, slides, setLiveProgress }: UseC
     handleScrollTo,
     initCarousel,
     goNext,
-    goPrev
+    goPrev,
   };
-}
-
-export default useCarouselHandlers
+};

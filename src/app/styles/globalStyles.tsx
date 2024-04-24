@@ -2,7 +2,7 @@
 
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 :root {
   * {
     box-sizing: border-box;
@@ -37,5 +37,3 @@ a {
  100% { transform: translateX(-30px) scale(2) }
 }
 `;
-
-export default GlobalStyle;

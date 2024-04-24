@@ -1,10 +1,8 @@
 "use client";
 
 // Font
-import { helvetica } from "@/fonts";
-
-// Styles
 import { DescriptionStyled, Author, Time, Button } from "./styles";
+import { helvetica } from "@/fonts";
 
 type DescriptionParams = {
   author: string;
@@ -12,7 +10,7 @@ type DescriptionParams = {
   link: string;
 };
 
-const Description = ({
+export const Description = ({
   author,
   when,
   link,
@@ -58,5 +56,3 @@ const Description = ({
     </DescriptionStyled>
   );
 };
-
-export default Description;

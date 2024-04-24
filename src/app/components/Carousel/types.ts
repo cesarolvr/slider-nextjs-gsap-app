@@ -1,5 +1,5 @@
-import { MotionValue } from "framer-motion";
-import { StaticImageData } from "next/image";
+import { type MotionValue } from "framer-motion";
+import { type StaticImageData } from "next/image";
 
 export type CarouselItemType = {
   backgroundImage: StaticImageData;
@@ -32,14 +32,14 @@ export type CarouselItemComponentType = {
     XAxisMovement: MotionValue;
     XAxisMovementDelayed: MotionValue;
     YAxisMovement: MotionValue;
-    rawList: Array<any>;
+    rawList: Array<CarouselItemType>;
   };
 };
 
 export type UseCarouselParams = {
   handleActiveItem: Function;
-  slides: Array<CarouselItemType>
-  setLiveProgress: Function,
+  slides: Array<CarouselItemType>;
+  setLiveProgress: Function;
 };
 
 export type CarouselParams = {
