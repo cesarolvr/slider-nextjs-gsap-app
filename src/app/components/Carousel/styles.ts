@@ -141,6 +141,7 @@ export const PrevImage = styled(Image)`
   border-radius: 10px;
   transition: transform 0.3s ease;
   transform-origin: bottom left;
+  object-fit: cover;
   
   &:hover {
     transform: scale(1.1);
