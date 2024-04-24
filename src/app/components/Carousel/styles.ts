@@ -11,6 +11,7 @@ export const CarouselStyled = styled(motion.div)`
     display: flex;
     justify-content: start;
     flex-wrap: nowrap;
+    will-change: transform;
   }
 `;
 
@@ -24,6 +25,7 @@ export const CarouselItem = styled.div<{ $backgroundImage?: StaticImageData }>`
   position: relative;
   transform-origin: center center;
   overflow: hidden;
+  will-change: transform;
 `;
 
 export const CarouselControl = styled(motion.div)`
@@ -89,6 +91,7 @@ export const CarouselItemLayer = styled.div`
   inset: 0;
   z-index: 1;
   backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
 `;
 
 export const CarouselItemContent = styled.div`

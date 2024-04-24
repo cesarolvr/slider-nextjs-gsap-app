@@ -36,6 +36,7 @@ import {
 
 // Handlers
 import { handleScrollTo } from "./handlers";
+import { useMouseMovement } from "./useMouseMovement";
 
 // Types
 import { CarouselParams, CarouselItemType } from "./types";
@@ -47,6 +48,8 @@ const Carousel = ({
   setLiveProgress,
 }: CarouselParams): React.ReactNode => {
   const [timeline, setTimeline]: Array<any> = useState(null);
+  const { handleMouse, XAxisMovement, XAxisMovementDelayed, YAxisMovement } =
+    useMouseMovement();
 
   const goNext = (current: number): null => {
     if (current === slides.length - 1) {
@@ -67,30 +70,14 @@ const Carousel = ({
       return null;
     }
 
-    handleScrollTo(timeline, `item-${current - 1}`),
-      handleActiveItem(current - 1);
-
+    handleScrollTo(timeline, `item-${current - 1}`);
+    handleActiveItem(current - 1);
     return null;
-  };
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateY = useTransform(y, [2000, 0], [10, -10]);
-  const rotateX = useTransform(x, [0, 2000], [-10, 10]);
-  const rotateXDelayed = useTransform(x, [0, 2000], [-15, 15]);
-
-  const handleMouse = (event: MouseEvent): void => {
-    const target: any = event?.currentTarget;
-    const rect: DOMRect = target?.getBoundingClientRect();
-
-    x.set(event.clientX - rect.left);
-    y.set(event.clientY - rect.top);
   };
 
   const InitCarousel = () => {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
     const body: HTMLBodyElement | null = document.querySelector("body");
-
     const trackWidth = body ? body.scrollWidth : 0;
 
     const timeline = gsap
@@ -195,13 +182,18 @@ const Carousel = ({
                     <PrevImage src={previewOfPrev} alt="" />
                   </PrevThumbnail>
                   <FeaturedItem
-                    style={{ x: rotateX, y: rotateY, rotateY, rotateX }}
+                    style={{
+                      x: XAxisMovement,
+                      y: YAxisMovement,
+                      rotateY: YAxisMovement,
+                      rotateX: YAxisMovement,
+                    }}
                   >
                     <ImageWrapper>
                       <Overlay>
                         <Title>
                           <TitleOverlay>
-                            <TitleCursorWrapper style={{ x: rotateX }}>
+                            <TitleCursorWrapper style={{ x: XAxisMovement }}>
                               <motion.div
                                 initial={{ x: 200, opacity: 0 }}
                                 animate={{ x: 0, opacity: 1 }}
@@ -218,7 +210,9 @@ const Carousel = ({
                             </TitleCursorWrapper>
                           </TitleOverlay>
                           <TitleOverlay>
-                            <TitleCursorWrapper style={{ x: rotateXDelayed }}>
+                            <TitleCursorWrapper
+                              style={{ x: XAxisMovementDelayed }}
+                            >
                               <motion.div
                                 initial={{ x: -200, opacity: 0 }}
                                 animate={{ x: 0, opacity: 1 }}
@@ -278,7 +272,7 @@ const Carousel = ({
                         <FeaturedImage src={featuredImage} alt="" />
                       </FeaturedImageWrapper>
                       <TitleOutline>
-                        <TitleCursorWrapper style={{ x: rotateX }}>
+                        <TitleCursorWrapper style={{ x: XAxisMovement }}>
                           <motion.div
                             initial={{ x: 200, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
@@ -293,7 +287,7 @@ const Carousel = ({
                             {title[0]}
                           </motion.div>
                         </TitleCursorWrapper>
-                        <TitleCursorWrapper style={{ x: rotateXDelayed }}>
+                        <TitleCursorWrapper style={{ x: XAxisMovementDelayed }}>
                           <motion.div
                             initial={{ x: -200, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
