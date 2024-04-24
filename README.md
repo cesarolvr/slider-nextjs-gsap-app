@@ -23,10 +23,11 @@ Tasks I see as an improvement and I'm still working on.
 
 - **Separations of concerns** - Some components are bigger and with more responsibilities than it shoul. Ex: Carousel.
 - **Code readability** - Some handlers could be moved to a separated file. Ex: Handlers of Carousel component like goNext, goPrev, etc...
-- **Unit tests** - It's hard to write unit tests now because the main function are't pure, and it makes harder to test input/output. Working on it...
+- **Unit tests** - It's hard to write unit tests now because the main functions are't pure, and it makes harder to test input/output. Working on it...
 - **Nice domain** - The plan was deploy with https://xyzphotography.cesarolvr.com but I'm still validating a certificate to this subdomain. Just a detail...
 - **Lighthouse** - There are some possible savings on mobile devices. Anyway, the current version is not that bad.
-- **Working inside safe area** - In some mobile devices, the page height is respecting viewport safe area (svh).
+- **Responsiveness** - My focus was mainly about mobile (<425px) and desktop (>992px), so maybe in middle-sizes screen the interface could be better.
+- **CSS unnecessary overrides** - There are a few !important statements to override framer-motion/gsap transforms. I know is not ideal, but in this case won't be that game changer.
 
 ### Getting started
 
