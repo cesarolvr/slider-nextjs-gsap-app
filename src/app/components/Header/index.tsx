@@ -1,9 +1,9 @@
 "use client";
+import { motion } from "framer-motion";
 
 // Styles
 import { HeaderStyled, LogoWrapper } from "./styles";
 
-import { motion } from "framer-motion";
 
 const Header = (): React.ReactNode => {
   return (
