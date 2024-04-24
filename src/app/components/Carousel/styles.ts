@@ -7,8 +7,7 @@ export const CarouselStyled = styled(motion.div)`
   
   .track {
     width: 500vw;
-    height: 100%;
-    min-height: 100vh;
+    height: 100svh;
     display: flex;
     justify-content: start;
     flex-wrap: nowrap;
@@ -31,13 +30,23 @@ export const CarouselControl = styled(motion.div)`
   position: absolute;
   z-index: 6;
   display: flex;
-  top: calc(100% - 24px);
+  top: auto;
+  bottom: 10px;
   align-items: center;
+
+  @media (min-width: 992px) {
+    /* top: calc(100% - 24px); */
+    bottom: 15%;
+  }
   
   p {
-    font-size: 10px;
+    font-size: 12px;
     text-transform: uppercase;
     font-weight: light;
+
+    @media (min-width: 992px) {
+      font-size: 10px;
+    }
   }
 
   .dots {
@@ -51,11 +60,11 @@ export const CarouselControl = styled(motion.div)`
   }
 
   .dot {
-    width: 5px;
-    height: 8px;
+    width: 8px;
+    height: 12px;
     border: 1px solid white;
-    border-radius: 2px;
-    margin: 0 2px;
+    border-radius: 3px;
+    margin: 0 3px;
     cursor: pointer;
     transition: transform 0.3s ease;
 
@@ -65,6 +74,13 @@ export const CarouselControl = styled(motion.div)`
 
     &:hover {
       transform: scale(1.6);
+    }
+
+    @media (min-width: 992px) {
+      width: 5px;
+      height: 8px;
+      border-radius: 2px;
+      margin: 0 2px;
     }
   }
 `;
@@ -91,15 +107,20 @@ const ThumbnailSharedStyles = css`
   position: absolute;
   cursor: pointer;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     width: 248px;
     height: 330px;
   }
 `
 export const PrevThumbnail = styled(motion.div)`
   ${ThumbnailSharedStyles};
-  left: 16px;
-  bottom: 16px;
+  left: -5px;
+  bottom: -5px;
+
+  @media (min-width: 992px) {
+    left: 16px;
+    bottom: 16px;
+  }
 `;
 
 export const PrevImage = styled(Image)`
@@ -128,8 +149,13 @@ export const NextImage = styled(Image)`
 
 export const NextThumbnail = styled(motion.div)`
   ${ThumbnailSharedStyles};
-  right: 16px;
+  right: -5px;
+  top: -5px;
+
+  @media (min-width: 992px) {
+    right: 16px;
   top: 16px;
+  }
 `;
 
 
@@ -151,6 +177,7 @@ export const FeaturedImage = styled(Image)`
 export const ImageWrapper = styled.div`
   width: 250px;
   height: 331px;
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -158,11 +185,12 @@ export const ImageWrapper = styled.div`
   justify-content: center;
 
   img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     width: 512px;
     height: 680px;
   }
@@ -170,7 +198,7 @@ export const ImageWrapper = styled.div`
 
 export const Overlay = styled.div`
   width: 100%;
-  height: 75%;
+  height: 100%;
   overflow: hidden;
   position: absolute;
   display: flex;
@@ -178,9 +206,9 @@ export const Overlay = styled.div`
   justify-content: center;
   flex-shrink: 0;
 
-  @media (min-width: 1024px) {
-    height: 57%;
-  }
+  /* @media (min-width: 992px) {
+    height: 100%;
+  } */
 `;
 
 export const Title = styled.h1`
@@ -196,7 +224,7 @@ export const Title = styled.h1`
 	text-stroke: 1px white;
   text-wrap: nowrap;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     font-size: 220px;
     line-height: 176px;
   }
@@ -224,7 +252,7 @@ export const TitleOutline = styled(motion.span)`
   text-wrap: nowrap;
   user-select: none;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     font-size: 220px;
     line-height: 176px;
   }

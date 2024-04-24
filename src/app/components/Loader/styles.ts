@@ -46,7 +46,7 @@ export const LoaderTitle = styled.div`
     margin-left: 10px;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     font-size: 220px;
   }
 `;
@@ -67,7 +67,7 @@ export const LoaderPercentage = styled.div`
   text-shadow: none;
   text-wrap: nowrap;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     font-size: 220px;
   }
 `;

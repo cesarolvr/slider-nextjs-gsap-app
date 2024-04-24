@@ -82,12 +82,13 @@ const Carousel = ({
     return null;
   };
 
-  const x = useMotionValue(2);
-  const y = useMotionValue(2);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
-  const rotateY = useTransform(y, [2000, 0], [10, -10]);
-  const rotateX = useTransform(x, [0, 2000], [-10, 10]);
-  const rotateXDelayed = useTransform(x, [0, 2000], [-15, 15]);
+  const isDesktop = typeof window !== "undefined" && window.innerWidth > 992;
+  const rotateY = isDesktop ? useTransform(y, [2000, 0], [10, -10]) : 0;
+  const rotateX = isDesktop ? useTransform(x, [0, 2000], [-10, 10]) : 0;
+  const rotateXDelayed = isDesktop ? useTransform(x, [0, 2000], [-15, 15]) : 0;
 
   const handleMouse = (event: MouseEvent): void => {
     const target: any = event?.currentTarget;
@@ -112,45 +113,45 @@ const Carousel = ({
           start: "top top",
           endTrigger: "body",
           end: "bottom bottom",
+          invalidateOnRefresh: true,
           scrub: true,
           onUpdate: ({ progress }) => {
             setLiveProgress(Math.round(progress * 100));
           },
         },
       })
+      .add(() => handleActiveItem(0))
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 1}px` })
-      .add(() => handleActiveItem(1))
+      .add(() => handleActiveItem(0))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-1")
+      .add(() => handleActiveItem(1))
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 2}px` })
-      .add(() => handleActiveItem(2))
+      .add(() => handleActiveItem(1))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-2")
+      .add(() => handleActiveItem(2))
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 3}px` })
-      .add(() => handleActiveItem(3))
+      .add(() => handleActiveItem(2))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-3")
+      .add(() => handleActiveItem(3))
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 4}px` })
-      .add(() => handleActiveItem(4))
+      .add(() => handleActiveItem(3))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-4")
-      .addLabel("item-5")
+      .add(() => handleActiveItem(4))
+      .addLabel("item-5");
 
     setTimeline(timeline);
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      InitCarousel();
-
-      if (activeItem > 0) {
-        handleScrollTo(`item-${activeItem}`);
-      }
-    }, 100);
+    InitCarousel();
   }, []);
 
   return (
