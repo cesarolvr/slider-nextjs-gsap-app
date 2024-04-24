@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 // Assets
 import ftImage1 from "@/images/image01.jpg";
 import bgImage1 from "@/images/image01@2x.jpg";
@@ -12,15 +10,8 @@ import bgImage4 from "@/images/image04@2x.jpg";
 import ftImage5 from "@/images/image05.jpg";
 import bgImage5 from "@/images/image05@2x.jpg";
 
-export type CarouselItemType = {
-  backgroundImage: StaticImageData;
-  featuredImage: StaticImageData;
-  title: Array<string>;
-  id: string;
-  author: string;
-  when: string;
-  link: string;
-};
+// Types
+import { CarouselItemType } from "@/app/components/Carousel/types";
 
 export const featuredItems: Array<CarouselItemType> = [
   {

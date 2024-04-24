@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
 import { MouseEvent, useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { CarouselItemType } from "@/data";
 
 // Components
 import Description from "../Description";
@@ -35,12 +34,11 @@ import {
   TitleCursorWrapper,
 } from "./styles";
 
-type CarouselParams = {
-  activeItem: number;
-  handleActiveItem: Function;
-  slides: Array<CarouselItemType>;
-  setLiveProgress: Function;
-};
+// Handlers
+import { handleScrollTo } from "./handlers";
+
+// Types
+import { CarouselParams, CarouselItemType } from "./types";
 
 const Carousel = ({
   activeItem,
@@ -50,21 +48,13 @@ const Carousel = ({
 }: CarouselParams): React.ReactNode => {
   const [timeline, setTimeline]: Array<any> = useState(null);
 
-  const handleScrollTo = (label: string): void => {
-    if (!timeline) return;
-    gsap.to(window, {
-      scrollTo: timeline.scrollTrigger.labelToScroll(label),
-      duration: 1,
-    });
-  };
-
   const goNext = (current: number): null => {
     if (current === slides.length - 1) {
-      handleScrollTo(`item-0`);
+      handleScrollTo(timeline, `item-0`);
       handleActiveItem(0);
       return null;
     }
-    handleScrollTo(`item-${current + 1}`);
+    handleScrollTo(timeline, `item-${current + 1}`);
     handleActiveItem(current + 1);
 
     return null;
@@ -72,12 +62,13 @@ const Carousel = ({
 
   const goPrev = (current: number): null => {
     if (current === 0) {
-      handleScrollTo(`item-${slides.length - 1}`);
+      handleScrollTo(timeline, `item-${slides.length - 1}`);
       handleActiveItem(slides.length - 1);
       return null;
     }
 
-    handleScrollTo(`item-${current - 1}`), handleActiveItem(current - 1);
+    handleScrollTo(timeline, `item-${current - 1}`),
+      handleActiveItem(current - 1);
 
     return null;
   };
@@ -122,27 +113,27 @@ const Carousel = ({
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 1}px` })
       .add(() => handleActiveItem(0))
+      .add(() => handleActiveItem(1))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-1")
-      .add(() => handleActiveItem(1))
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 2}px` })
       .add(() => handleActiveItem(1))
+      .add(() => handleActiveItem(2))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-2")
-      .add(() => handleActiveItem(2))
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 3}px` })
       .add(() => handleActiveItem(2))
+      .add(() => handleActiveItem(3))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-3")
-      .add(() => handleActiveItem(3))
       .to(".carouselItem", { delay: 1, scale: 0.9, borderRadius: "20px" })
       .to(".track", { ease: "none", x: `-${(trackWidth / 5) * 4}px` })
       .add(() => handleActiveItem(3))
+      .add(() => handleActiveItem(4))
       .to(".carouselItem", { scale: 1, borderRadius: "0px" })
       .addLabel("item-4")
-      .add(() => handleActiveItem(4))
       .addLabel("item-5");
 
     setTimeline(timeline);
@@ -261,7 +252,7 @@ const Carousel = ({
                               return (
                                 <div
                                   onClick={() => {
-                                    handleScrollTo(`item-${index}`);
+                                    handleScrollTo(timeline, `item-${index}`);
                                     handleActiveItem(index);
                                   }}
                                   key={index}
