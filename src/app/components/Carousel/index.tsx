@@ -84,7 +84,6 @@ const Carousel = ({
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const isDesktop = typeof window !== "undefined" && window.innerWidth > 992;
   const rotateY = useTransform(y, [2000, 0], [10, -10]);
   const rotateX = useTransform(x, [0, 2000], [-10, 10]);
   const rotateXDelayed = useTransform(x, [0, 2000], [-15, 15]);

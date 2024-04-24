@@ -278,4 +278,7 @@ export const TitleOutline = styled(motion.span)`
 `;
 
 export const TitleCursorWrapper = styled(motion.div)`
+  @media (max-width: 992px) {
+    transform: none !important;
+  }
 `;
