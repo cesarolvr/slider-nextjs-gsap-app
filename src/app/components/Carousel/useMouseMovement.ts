@@ -1,6 +1,6 @@
 import { useMotionValue, useTransform } from "framer-motion";
 
-export const useMouseMovement = () => {
+const useMouseMovement = () => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const YAxisMovement = useTransform(y, [2000, 0], [10, -10]);
@@ -22,3 +22,5 @@ export const useMouseMovement = () => {
     XAxisMovementDelayed
   };
 }
+
+export default useMouseMovement

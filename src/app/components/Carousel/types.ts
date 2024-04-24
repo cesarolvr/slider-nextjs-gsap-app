@@ -1,5 +1,11 @@
 import { StaticImageData } from "next/image";
 
+export type UseCarouselParams = {
+  handleActiveItem: Function;
+  slides: Array<CarouselItemType>
+  setLiveProgress: Function,
+};
+
 export type CarouselParams = {
   activeItem: number;
   handleActiveItem: Function;
