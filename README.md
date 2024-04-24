@@ -18,7 +18,7 @@ This challenge consists of a page with 1 major component: A kind of Slider/Carou
 - **Jest** - To unit tests: Still working on it...
 - **Vercel** - Just to serve.
 
-### Ongoing work
+### Roadmap
 Tasks I would see as future improvements.
 
 - **Unit tests** - It's hard to write unit tests now because the main functions are't pure, and it makes harder to test input/output. Working on it...
