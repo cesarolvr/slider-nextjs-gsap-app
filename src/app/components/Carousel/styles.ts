@@ -15,7 +15,7 @@ export const CarouselStyled = styled(motion.div)`
   }
 `;
 
-export const CarouselItem = styled.div<{ $backgroundImage?: StaticImageData }>`
+export const CarouselItemStyled = styled.div<{ $backgroundImage?: StaticImageData }>`
   height: 100%;
   width: 20%;
   background-image: url(${props => props.$backgroundImage?.src});

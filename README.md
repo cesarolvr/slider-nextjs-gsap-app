@@ -19,15 +19,14 @@ This challenge consists of a page with 1 major component: A kind of Slider/Carou
 - **Vercel** - Just to serve.
 
 ### Ongoing work
-Tasks I see as an improvement and I'm still working on.
+Tasks I would see as future improvements.
 
-- **Separations of concerns** - Some components are bigger and with more responsibilities than it shoul. Ex: Carousel.
-- **Code readability** - Some handlers could be moved to a separated file. Ex: Handlers of Carousel component like goNext, goPrev, etc...
 - **Unit tests** - It's hard to write unit tests now because the main functions are't pure, and it makes harder to test input/output. Working on it...
 - **Nice domain** - The plan was deploy with https://xyzphotography.cesarolvr.com but I'm still validating a certificate to this subdomain. Just a detail...
 - **Lighthouse** - There are some possible savings on mobile devices. Anyway, the current version is not that bad.
 - **Responsiveness** - My focus was mainly about mobile (<425px) and desktop (>992px), so maybe in middle-sizes screen the interface could be better.
 - **CSS unnecessary overrides** - There are a few !important statements to override framer-motion/gsap transforms. I know is not ideal, but in this case won't be that game changer.
+- **Animation performance** - I also tested from a low-end smartphone and middle-end laptop and I see opportunities to optimize the fluidity of some animations.
 
 ### Getting started
 

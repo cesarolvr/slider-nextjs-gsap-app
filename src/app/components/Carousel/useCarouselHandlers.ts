@@ -9,7 +9,7 @@ import { UseCarouselParams } from "./types";
 const useCarouselHandlers = ({ handleActiveItem, slides, setLiveProgress }: UseCarouselParams) => {
   const [timeline, setTimeline]: Array<any> = useState(null);
 
-  const handleScrollTo = (timeline: GSAPTimeline, label: string): void => {
+  const handleScrollTo = (label: string): void => {
     if (!timeline) return;
     gsap.to(window, {
       scrollTo: timeline?.scrollTrigger?.labelToScroll(label),
@@ -19,11 +19,11 @@ const useCarouselHandlers = ({ handleActiveItem, slides, setLiveProgress }: UseC
 
   const goNext = (current: number): null => {
     if (current === slides.length - 1) {
-      handleScrollTo(timeline, `item-0`);
+      handleScrollTo(`item-0`);
       handleActiveItem(0);
       return null;
     }
-    handleScrollTo(timeline, `item-${current + 1}`);
+    handleScrollTo(`item-${current + 1}`);
     handleActiveItem(current + 1);
 
     return null;
@@ -31,12 +31,12 @@ const useCarouselHandlers = ({ handleActiveItem, slides, setLiveProgress }: UseC
 
   const goPrev = (current: number): null => {
     if (current === 0) {
-      handleScrollTo(timeline, `item-${slides.length - 1}`);
+      handleScrollTo(`item-${slides.length - 1}`);
       handleActiveItem(slides.length - 1);
       return null;
     }
 
-    handleScrollTo(timeline, `item-${current - 1}`);
+    handleScrollTo(`item-${current - 1}`);
     handleActiveItem(current - 1);
     return null;
   };
