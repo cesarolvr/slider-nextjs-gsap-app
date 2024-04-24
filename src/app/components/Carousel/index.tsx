@@ -2,7 +2,7 @@
 
 import classNames from "classnames";
 import { MouseEvent, useEffect } from "react";
-import { motion } from "framer-motion";
+import { EventInfo, motion } from "framer-motion";
 
 // Components
 import Description from "../Description";
