@@ -32,12 +32,11 @@ export const CarouselControl = styled(motion.div)`
   position: absolute;
   z-index: 6;
   display: flex;
-  top: auto;
-  bottom: 10px;
+  top: calc(50% + 90px);
   align-items: center;
 
   @media (min-width: 992px) {
-    bottom: 15%;
+    top: calc(50% + 165px)
   }
   
   p {
@@ -200,7 +199,7 @@ export const FeaturedImage = styled(Image)`
 export const ImageWrapper = styled.div`
   width: 250px;
   height: 331px;
-  max-height: 70vh;
+  max-height: 80vh;
   display: flex;
   flex-direction: column;
   position: relative;
