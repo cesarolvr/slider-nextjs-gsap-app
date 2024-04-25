@@ -10,7 +10,7 @@ export const useCarouselHandlers = ({
   slides,
   setLiveProgress,
 }: UseCarouselParams) => {
-  const [timeline, setTimeline]: Array<any> = useState(null);
+  const [timeline, setTimeline] = useState<gsap.core.Timeline | null>(null);
 
   const handleScrollTo = (label: string): void => {
     if (!timeline) return;
