@@ -3,7 +3,10 @@
 import classNames from "classnames";
 import { motion } from "framer-motion";
 
-// Components
+// Types
+import { type CarouselItemComponentType } from "../types";
+
+// Styles
 import {
   CarouselItemStyled,
   CarouselItemLayer,
@@ -22,14 +25,13 @@ import {
   FeaturedImage,
   FeaturedImageWrapper,
   TitleCursorWrapper,
-} from "../styles";
-import { type CarouselItemComponentType } from "../types";
+} from "./styles";
+
+// Components
 import { Description } from "@/app/components/Description";
 
 // Fonts
 import { helvetica } from "@/fonts";
-
-// Styles
 
 export const CarouselItem = ({
   index,

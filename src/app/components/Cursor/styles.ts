@@ -48,7 +48,7 @@ export const CursorStyled = styled.div`
     top: 0;
     left: 0;
     fill: none;
-    stroke-width: 2px;
+    stroke-width: 1px;
     stroke: rgba(255, 255, 255, 0.3);
   }
 
@@ -60,6 +60,6 @@ export const CursorStyled = styled.div`
     stroke-opacity: 1;
     stroke-dasharray: 100 100;
     stroke-linecap: round;
-    stroke-width: 2px;
+    stroke-width: 1px;
   }
 `;
